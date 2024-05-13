@@ -50,8 +50,8 @@ private: // メンバ変数
 	//スプライト
 	Sprite* sprite_ = nullptr;
 
-	//テクスチャハンドル
-	uint32_t textureHandle_ = 0;
+	//テクスチャハンドル(3D用重複分)
+	//uint32_t textureHandle_ = 0;
 
 	//3Dモデル
 	Model* model_ = nullptr;

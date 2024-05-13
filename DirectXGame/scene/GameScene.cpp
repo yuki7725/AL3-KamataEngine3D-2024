@@ -61,7 +61,9 @@ void GameScene::Update() {
 	}
 
 	//デバッグテキストの表示
+	ImGui::Begin("Debug1");
 	ImGui::Text("Kamata Tarou %d.%d.%d", 2050, 12, 31);
+	ImGui::End();
 }
 
 void GameScene::Draw() {

@@ -32,6 +32,9 @@ void GameScene::Initialize() {
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
 
+	//サウンドデータの読み込み
+	soundDataHandle_ = audio_->LoadWave("fanfare.wav");
+
 }
 
 void GameScene::Update() {

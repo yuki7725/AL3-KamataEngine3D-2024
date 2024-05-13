@@ -50,8 +50,8 @@ private: // メンバ変数
 	//スプライト
 	Sprite* sprite_ = nullptr;
 
-	//1テクスチャハンドル
-	uint32_t textureHandle_ = TextureManager::Load("sample.png"); 
+	//テクスチャハンドル
+	uint32_t textureHandle_ = 0;
 
 	/// <summary>
 	/// ゲームシーン用

@@ -17,6 +17,9 @@ void GameScene::Initialize() {
 
 	//スプライトの生成
 	sprite_ = Sprite::Create(textureHandle_, {100, 50});
+
+	//ファイル名を指定してテクスチャを読み込む
+	textureHandle_ = TextureManager::Load("sample.png");
 }
 
 void GameScene::Update() {

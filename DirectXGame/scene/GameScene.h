@@ -53,6 +53,9 @@ private: // メンバ変数
 	//テクスチャハンドル
 	uint32_t textureHandle_ = 0;
 
+	//3Dモデル
+	Model* model_ = nullptr;
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

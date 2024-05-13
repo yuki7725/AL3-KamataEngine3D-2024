@@ -2,7 +2,10 @@
 #include "TextureManager.h"
 #include <cassert>
 
-GameScene::GameScene() { delete sprite_; }
+GameScene::GameScene() { 
+	delete sprite_;
+	delete model_;
+}
 
 GameScene::~GameScene() {}
 
@@ -20,6 +23,10 @@ void GameScene::Initialize() {
 
 	//ファイル名を指定してテクスチャを読み込む
 	textureHandle_ = TextureManager::Load("sample.png");
+
+	//3Dモデルの生成
+	model_ = Model::Create();
+
 }
 
 void GameScene::Update() {

@@ -7,6 +7,7 @@
 GameScene::GameScene() { 
 	delete sprite_;
 	delete model_;
+	delete debugCamera_;
 }
 
 GameScene::~GameScene() {}
@@ -46,6 +47,9 @@ void GameScene::Initialize() {
 	//ライン描画が参照するビュープロジェクションを指定する(アドレスなし)
 	PrimitiveDrawer::GetInstance()->SetViewProjection(&viewProjection_);
 
+	//デバッグカメラの生成
+	debugCamera_ = new DebugCamera(1280, 720);
+
 }
 
 void GameScene::Update() {
@@ -79,6 +83,9 @@ void GameScene::Update() {
 	ImGui::ShowDemoWindow();
 
 	ImGui::End();
+
+	//デバッグカメラの更新
+	debugCamera_->Update();
 
 }
 

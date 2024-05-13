@@ -67,6 +67,8 @@ void GameScene::Update() {
 	ImGui::InputFloat3("InputFloat3", inputFloat3);
 	//float3スライダー
 	ImGui::SliderFloat3("sliderFloat3", inputFloat3, 0.0f,1.0f);
+	//デモウィンドウの表示を有効化
+	ImGui::ShowDemoWindow();
 	ImGui::End();
 
 }

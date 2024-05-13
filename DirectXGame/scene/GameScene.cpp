@@ -137,5 +137,8 @@ void GameScene::Draw() {
 	//ラインを描画する
 	PrimitiveDrawer::GetInstance()->DrawLine3d({0, 0, 0}, {0, 10, 0}, {1.0f, 0.0f, 0.0f, 1.0f});
 
+	//モデルを連動させる
+	//model_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
+
 #pragma endregion
 }

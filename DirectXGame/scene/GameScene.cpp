@@ -2,6 +2,7 @@
 #include "TextureManager.h"
 #include <cassert>
 #include "ImGuiManager.h"
+#include "PrimitiveDrawer.h"
 
 GameScene::GameScene() { 
 	delete sprite_;
@@ -41,6 +42,9 @@ void GameScene::Initialize() {
 
 	//音声再生
 	voiceHandle_ = audio_->PlayWave(soundDataHandle_, true);
+
+	//ライン描画が参照するビュープロジェクションを指定する(アドレスなし)
+	PrimitiveDrawer::GetInstance()->SetViewProjection(&viewProjection_);
 
 }
 
@@ -122,6 +126,9 @@ void GameScene::Draw() {
 
 	// スプライト描画後処理
 	Sprite::PostDraw();
+
+	//ラインを描画する
+	PrimitiveDrawer::GetInstance()->DrawLine3d({0, 0, 0}, {0, 10, 0}, {1.0f, 0.0f, 0.0f, 1.0f});
 
 #pragma endregion
 }

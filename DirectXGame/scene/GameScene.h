@@ -64,6 +64,9 @@ private: // メンバ変数
 	//サウンドデータハンドル
 	uint32_t soundDataHandle_ = 0;
 
+	//音声再生ハンドル
+	uint32_t voiceHandle_ = 0;
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

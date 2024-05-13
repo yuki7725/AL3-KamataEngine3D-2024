@@ -13,7 +13,7 @@ void GameScene::Initialize() {
 	audio_ = Audio::GetInstance();
 
 	//ファイル名を指定してテクスチャを読み込む
-	textureHandle_ = TextureManager::Load("sample.jpg");
+	textureHandle_ = TextureManager::Load("sample.png");
 
 	//スプライトの生成
 	sprite_ = Sprite::Create(textureHandle_, {100, 50});
@@ -59,6 +59,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
+	sprite_->Draw();
 
 	// スプライト描画後処理
 	Sprite::PostDraw();

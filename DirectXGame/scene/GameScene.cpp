@@ -17,6 +17,12 @@ void GameScene::Initialize() {
 
 	//3Dモデルの生成
 	model_ = Model::Create();
+
+	////ワールドトランスフォームの初期化
+	//viewProjection_.Initialize();
+
+	//ビュープロジェクションの初期化
+	viewProjection_.Initialize();
 }
 
 void GameScene::Update() {}

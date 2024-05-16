@@ -50,6 +50,12 @@ private: // メンバ変数
 	//3Dモデルデータ
 	Model* model_ = nullptr;
 
+	////ワールドトランスフォーム
+	//WorldTransform worldTransform_;
+	
+	//ビュープロジェクション
+	ViewProjection viewProjection_;
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

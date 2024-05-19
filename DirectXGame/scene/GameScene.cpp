@@ -4,7 +4,10 @@
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() { delete model_; }
+GameScene::~GameScene() {
+	delete model_;
+	delete player_;
+}
 
 void GameScene::Initialize() {
 
@@ -23,9 +26,19 @@ void GameScene::Initialize() {
 
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
+
+	//自キャラの生成
+	player_ = new Player();
+
+	//自キャラの初期化
+	player_->Initialize();
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+	
+	//自キャラの更新
+	player_->Update();
+}
 
 void GameScene::Draw() {
 
@@ -68,6 +81,9 @@ void GameScene::Draw() {
 
 	// スプライト描画後処理
 	Sprite::PostDraw();
+
+	//自キャラの描画
+	player_->Draw();
 
 #pragma endregion
 }

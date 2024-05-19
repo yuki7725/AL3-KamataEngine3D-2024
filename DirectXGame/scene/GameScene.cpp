@@ -16,13 +16,13 @@ void GameScene::Initialize() {
 	audio_ = Audio::GetInstance();
 
 	//ファイル名を指定してテクスチャを読み込む
-	textureHandle_ = TextureManager::Load("sample.png");
+	textureHandle_ = TextureManager::Load("uvChecker.png");
 
 	//3Dモデルの生成
 	model_ = Model::Create();
 
-	////ワールドトランスフォームの初期化
-	//viewProjection_.Initialize();
+	//ワールドトランスフォームの初期化
+	worldTransform_.Initialize();
 
 	//ビュープロジェクションの初期化
 	viewProjection_.Initialize();
@@ -31,7 +31,7 @@ void GameScene::Initialize() {
 	player_ = new Player();
 
 	//自キャラの初期化
-	player_->Initialize();
+	player_->Initialize(model_,textureHandle_,&viewProjection_);
 }
 
 void GameScene::Update() {
@@ -66,6 +66,10 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	
+	//自キャラの描画
+	player_->Draw();
+
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -80,10 +84,8 @@ void GameScene::Draw() {
 	/// </summary>
 
 	// スプライト描画後処理
-	Sprite::PostDraw();
+	//Sprite::PostDraw();
 
-	//自キャラの描画
-	player_->Draw();
-
+	
 #pragma endregion
 }

@@ -1,6 +1,6 @@
 #include "player.h"
 
-void Player::Initialize() {}
+void Player::Initialize(Model* model, uint32_t textureHandle) {}
 
 void Player::Update() {}
 

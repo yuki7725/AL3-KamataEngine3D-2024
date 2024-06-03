@@ -1,5 +1,6 @@
 #include "GameScene.h"
 #include "TextureManager.h"
+#include "cameraController.h"
 
 #include <cassert>
 
@@ -33,13 +34,17 @@ void GameScene::Initialize() {
 
 	// 自キャラの初期化
 	player_->Initialize(model_, textureHandle_, &viewProjection_);
+
+	//カメラコントローラの初期化
+	//生成
+	debugCamera_=new 
 }
 
 void GameScene::Update() {
 
 	if (isDebugCameraActive_) {
 		debugCamera_->Update();
-		viewProjection_.matView = debugCamera_->GetViewProjection()
+		viewProjection_.matView = debugCamera_->GetViewProjection();
 	}
 
 	// 自キャラの更新

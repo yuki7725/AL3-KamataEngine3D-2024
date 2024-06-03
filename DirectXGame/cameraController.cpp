@@ -1,6 +1,7 @@
 #include "cameraController.h"
 #include "WorldTransform.h"
 #include <cmath>
+#include "player.h"
 
 void CameraController::Initialize() {
 
@@ -13,7 +14,7 @@ void CameraController::Update() {
 	//追従対象のワールドトランスフォームを参照
 	const WorldTransform& targetWorldTransform = target_->GetWorldTransform();
 	//追従対象をオフセット空カメラの目標座標を計算
-	a = targetWorldTransform.translation_ + targetOffset_;
+	a.x = targetWorldTransform.translation_ + targetOffset_;
 	
 	//座標保管二よりゆったり追従
 	viewProjection_.translation_ = Lerp /*Lerp関数は自作する*/ (viewProjection_.translation_, a, kInterpolationRate);

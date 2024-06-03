@@ -60,6 +60,9 @@ private: // メンバ変数
 	// 自キャラ
 	Player* player_ = nullptr;
 
+	//デバッグカメラ
+	DebugCamera* debugCamera_ = nullptr;
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

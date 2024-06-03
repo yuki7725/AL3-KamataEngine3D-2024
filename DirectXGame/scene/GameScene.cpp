@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include "TextureManager.h"
 #include "cameraController.h"
+#include "DebugCamera.h"
 
 #include <cassert>
 
@@ -37,7 +38,9 @@ void GameScene::Initialize() {
 
 	//カメラコントローラの初期化
 	//生成
-	debugCamera_=new 
+	debugCamera_ =new DebugCamera();
+	//初期化
+	debugCamera_->
 }
 
 void GameScene::Update() {

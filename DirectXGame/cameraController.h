@@ -15,7 +15,7 @@ public:
 
 	void SetTarget(Player* target) { target_ = target; }
 
-	void SetMovableArea(MovableArea* movableArea) { movableArea_ = movableArea; }
+	void SetMovableArea(Vector3* Area) { movableArea_ = Area; }
 
 private:
 

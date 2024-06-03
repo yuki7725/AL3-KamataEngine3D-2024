@@ -37,6 +37,11 @@ void GameScene::Initialize() {
 
 void GameScene::Update() {
 
+	if (isDebugCameraActive_) {
+		debugCamera_->Update();
+		viewProjection_.matView = debugCamera_->GetViewProjection()
+	}
+
 	// 自キャラの更新
 	player_->Update();
 }

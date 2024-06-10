@@ -62,6 +62,8 @@ void GameScene::Update() {
 	//ブロックの更新
 	for (WorldTransform* worldTransformBlock : worldTransformBlocks_) {
 	//worldTransformBlock->matWorld_=
+		//アフィン
+
 		if (!worldTransformBlock) {
 		continue;
 		}

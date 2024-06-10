@@ -8,9 +8,12 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 	delete model_;
 	delete player_;
+	delete debugCamera_;
 
-	for (WorldTransform* worldTransformBlock : worldTransformBlocks_) {
-		delete worldTransformBlock;
+	for (std::vector<WorldTransform*>& worldTransformBlockLine : worldTransformBlocks_) {
+		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
+			delete worldTransformBlock;
+		}	
 	}
 	worldTransformBlocks_.clear();
 }
@@ -39,36 +42,82 @@ void GameScene::Initialize() {
 	// 自キャラの初期化
 	player_->Initialize(model_, textureHandle_, &viewProjection_);
 
-	//要素数
+	// 要素数
+	const uint32_t kNumBlockVirtical = 10;
 	const uint32_t kNumBlockHorizontal = 20;
-	//ブロック一個分の横幅
+
+	// ブロック一個分の横幅
 	const float kBlockWidth = 2.0f;
-	//要素数を変更する
+	const float kBlockHeight = 2.0f;
+
+	//マップチップ
+	int map[kNumBlockVirtical][kNumBlockHorizontal] = {
+	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+        {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+        {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+        {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+	};
+
+	// 要素数を変更する
 	worldTransformBlocks_.resize(kNumBlockHorizontal);
-	//キューブの生成
-	for (uint32_t i = 0; i < kNumBlockHorizontal; ++i) {
-		worldTransformBlocks_[i] = new WorldTransform();
-		worldTransformBlocks_[i] -> Initialize();
-		worldTransformBlocks_[i]->translation_.x = kBlockWidth * i;
-		worldTransformBlocks_[i]->translation_.y = 0.0f;
+	for (uint32_t i = 0; i < kNumBlockVirtical; ++i) {
+		worldTransformBlocks_[i].resize(kNumBlockHorizontal);
 	}
+
+	// キューブの生成
+	for (uint32_t i = 0; i < kNumBlockVirtical; ++i) {
+		for (uint32_t j = 0; j < kNumBlockHorizontal; ++j) {
+			// worldTransformBlocks_[i][j]=resize(kNumBlockHorizontal);
+			worldTransformBlocks_[i][j] = new WorldTransform();
+			worldTransformBlocks_[i][j]->Initialize();
+			worldTransformBlocks_[i][j]->translation_.x = kBlockWidth * i;
+			worldTransformBlocks_[i][j]->translation_.y = kBlockHeight * j;
+		}
+	}
+
+	//デバッグカメラの生成
+	debugCamera_ = new DebugCamera(1280, 720);
 }
 
 void GameScene::Update() {
+
+	#ifdef _DEBUG
+	if (input_->TriggerKey(DIK_SPACE)) {
+	
+	}
+	#endif
 
 	// 自キャラの更新
 	player_->Update();
 
 	//ブロックの更新
-	for (WorldTransform* worldTransformBlock : worldTransformBlocks_) {
-	//worldTransformBlock->matWorld_=
-		//アフィン
-
-		if (!worldTransformBlock) {
-		continue;
+	for (std::vector<WorldTransform*>&worldTransformBlockLine:worldTransformBlocks_){
+		//worldTransformBlock->matWorld_=
+		//アフィン modelBlock_を使う
+		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
+			if (!worldTransformBlock) 
+				continue;
+				worldTransformBlock->UpdateMatrix();
 		}
-		worldTransformBlock->UpdateMatrix();
 	}
+
+	//カメラの処理
+	if (isDebugCameraActive_) {
+		debugCamera_->Update();//デバッグカメラの更新
+		viewProjection_.matView = debugCamera_->GetViewProjection().matView;//デバッグカメラのビュー行列
+		viewProjection_.matProjection = debugCamera_->GetViewProjection().matProjection;//デバッグカメラのプロジェクション行列
+		viewProjection_.UpdateMatrix();//ビュープロジェクション行列の転送
+	} else {
+		viewProjection_.UpdateMatrix();//ビュープロジェクション行列の更新と転送
+	}
+
+	
 }
 
 void GameScene::Draw() {
@@ -115,6 +164,15 @@ void GameScene::Draw() {
 
 	// スプライト描画後処理
 	// Sprite::PostDraw();
+
+	//ブロックの描画
+	for (std::vector<WorldTransform*>&worldTransformBlockLine:worldTransformBlocks_){
+		for (WorldTransform* worldTransformBlock : worldTransformBlockLine) {
+			if (!worldTransformBlock) 
+				continue;	
+			model_->Draw(*worldTransformBlock, viewProjection_);
+		}
+	}
 
 #pragma endregion
 }

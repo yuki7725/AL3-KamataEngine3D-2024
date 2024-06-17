@@ -8,6 +8,7 @@
 #include "ViewProjection.h"
 #include "WorldTransform.h"
 #include "player.h"
+#include "Skydome.h"
 
 /// <summary>
 /// ゲームシーン
@@ -44,12 +45,16 @@ private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
+	Player* player_ = nullptr;
+	SkyDome* skyDome_ = nullptr;
+	
 
 	// テクスチャハンドル
 	uint32_t textureHandle_ = 0;
 
 	// 3Dモデルデータ
 	Model* model_ = nullptr;
+	Model* modelSkyDome_ = nullptr;
 
 	// ワールドトランスフォーム
 	WorldTransform worldTransform_;
@@ -57,9 +62,8 @@ private: // メンバ変数
 	// ビュープロジェクション
 	ViewProjection viewProjection_;
 
-	// 自キャラ
-	Player* player_ = nullptr;
-
+	//
+	
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

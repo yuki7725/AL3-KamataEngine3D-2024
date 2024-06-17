@@ -8,6 +8,7 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 	delete model_;
 	delete player_;
+	delete modelSkyDome_;
 }
 
 void GameScene::Initialize() {
@@ -21,6 +22,7 @@ void GameScene::Initialize() {
 
 	// 3Dモデルの生成
 	model_ = Model::Create();
+	modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
 
 	// ワールドトランスフォームの初期化
 	worldTransform_.Initialize();

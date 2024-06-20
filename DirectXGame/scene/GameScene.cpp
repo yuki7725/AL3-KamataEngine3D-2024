@@ -59,9 +59,18 @@ void GameScene::Initialize() {
 }
 
 void GameScene::Update() {
-	
+
 	//自キャラの更新
 	player_->Update();
+
+	//ブロックの更新
+	for (WorldTransform* worldTransformBlock : worldTransformBlocks_) {
+	
+		worldTransformBlock->matWorld_ = MakeAffineMatrix();
+		
+		//定数バッファに転送
+		worldTransformBlock->TransferMatrix();
+	}
 }
 
 void GameScene::Draw() {

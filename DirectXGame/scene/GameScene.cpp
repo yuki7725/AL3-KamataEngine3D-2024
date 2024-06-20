@@ -7,6 +7,7 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 	delete model_;
 	delete player_;
+	delete modelBlock_;
 }
 
 void GameScene::Initialize() {
@@ -32,6 +33,8 @@ void GameScene::Initialize() {
 
 	//自キャラの初期化
 	player_->Initialize(model_,textureHandle_,&viewProjection_);
+
+	modelBlock_ = new Model();
 }
 
 void GameScene::Update() {

@@ -60,6 +60,8 @@ private: // メンバ変数
 	// 自キャラ
 	Player* player_ = nullptr;
 
+	Model* modelBlock_ = nullptr;
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

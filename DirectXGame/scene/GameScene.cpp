@@ -8,6 +8,11 @@ GameScene::~GameScene() {
 	delete model_;
 	delete player_;
 	delete modelBlock_;
+
+	for (WorldTransform* worldTransformBlock : worldTransformBlocks_) {
+		delete worldTransformBlock;
+	}
+	worldTransformBlocks_.clear();
 }
 
 void GameScene::Initialize() {

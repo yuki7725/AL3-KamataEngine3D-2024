@@ -40,6 +40,22 @@ void GameScene::Initialize() {
 	player_->Initialize(model_,textureHandle_,&viewProjection_);
 
 	modelBlock_ = new Model();
+
+	//要素数
+	const uint32_t kNumBlockHorizontal = 20;
+	//横幅
+	const float kBlockWidth = 2.0f;
+	//要素数を変更する
+	worldTransformBlocks_.resize(kNumBlockHorizontal);
+
+	//
+	for (uint32_t i = 0; i < kNumBlockHorizontal; ++i) {
+		worldTransformBlocks_[i] = new WorldTransform();
+		worldTransformBlocks_[i]->Initialize();
+		worldTransformBlocks_[i]->translation_.x = kBlockWidth * i;
+		worldTransformBlocks_[i]->translation_.y = 0.0f;
+	}
+
 }
 
 void GameScene::Update() {

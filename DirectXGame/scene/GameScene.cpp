@@ -58,7 +58,9 @@ void GameScene::Initialize() {
 		worldTransformBlocks_[i].resize(kNumBlockHorizontal);
 	}
 
-	//キューブの生成
+	//ブロックのマップチップ
+
+	//ブロックの生成
 	for (uint32_t i = 0; i < kNumBlockHorizontal; ++i) {
 		for (uint32_t j = 0; j < kNumBlockVertical; ++i) {
 

@@ -72,7 +72,7 @@ private: // メンバ変数
 	bool isDebugCameraActive_ = false;
 
 	// 天球
-	skydome* skydome_ = nullptr;
+	skyDome* skyDome_ = nullptr;
 
 	Model* modelSkyDome_ = nullptr;
 

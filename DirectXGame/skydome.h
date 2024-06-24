@@ -2,12 +2,13 @@
 
 #include "Model.h"
 #include "WorldTransform.h"
+#include "ViewProjection.h"
 
 /// <summary>
 /// 天球
 /// </summary>
 
-class skydome {
+class skyDome {
 public:
 	/// <summary>
 	/// 初期化
@@ -26,9 +27,13 @@ public:
 
 private:
 	//ワールド変換データ
-	WorldTransform* worldTransform_;
+	WorldTransform worldTransform_;
 	//モデル
 	Model* model_ = nullptr;
+	//ビュープロジェクション
+	ViewProjection viewProjection_;
+	// テクスチャハンドル
+	uint32_t textureHandle_ = 0u;
 	
 };
 

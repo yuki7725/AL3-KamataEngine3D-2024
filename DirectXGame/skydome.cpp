@@ -1,7 +1,9 @@
 #include "skydome.h"
 
-void skydome::Initialize() {}
+void skyDome::Initialize() {}
 
-void skydome::Update() {}
+void skyDome::Update() {}
 
-void skydome::Draw() {}
+void skyDome::Draw() { 
+	model_->Draw(worldTransform_, viewProjection_); 
+}

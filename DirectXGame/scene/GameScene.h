@@ -49,6 +49,7 @@ private: // メンバ変数
 	Audio* audio_ = nullptr;
 	DebugCamera* debugCamera_ = nullptr;
 
+
 	// テクスチャハンドル
 	uint32_t textureHandle_ = 0;
 

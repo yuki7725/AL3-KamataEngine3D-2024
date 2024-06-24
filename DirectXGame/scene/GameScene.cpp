@@ -8,9 +8,12 @@ GameScene::~GameScene() {
 	delete model_;
 	delete player_;
 	delete modelBlock_;
+	delete debugCamera_;
 
-	for (WorldTransform* worldTransformBlock : worldTransformBlocks_) {
-		delete worldTransformBlock;
+	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
+		for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
+			delete worldTransformBlock;
+		}	
 	}
 	worldTransformBlocks_.clear();
 }
@@ -43,33 +46,65 @@ void GameScene::Initialize() {
 
 	//要素数
 	const uint32_t kNumBlockHorizontal = 20;
+	const uint32_t kNumBlockVertical = 10;
 	//横幅
 	const float kBlockWidth = 2.0f;
+	//縦幅
+	const float kBlockHeight = 2.0f;
 	//要素数を変更する
-	worldTransformBlocks_.resize(kNumBlockHorizontal);
-
-	//
-	for (uint32_t i = 0; i < kNumBlockHorizontal; ++i) {
-		worldTransformBlocks_[i] = new WorldTransform();
-		worldTransformBlocks_[i]->Initialize();
-		worldTransformBlocks_[i]->translation_.x = kBlockWidth * i;
-		worldTransformBlocks_[i]->translation_.y = 0.0f;
+	worldTransformBlocks_.resize(kNumBlockVertical);
+	for (uint32_t i = 0; i < kNumBlockVertical; ++i) {
+		//一列の要素数を設定
+		worldTransformBlocks_[i].resize(kNumBlockHorizontal);
 	}
 
+	//キューブの生成
+	for (uint32_t i = 0; i < kNumBlockHorizontal; ++i) {
+		for (uint32_t j = 0; j < kNumBlockVertical; ++i) {
+
+			worldTransformBlocks_[i][j] = new WorldTransform();
+			worldTransformBlocks_[i][j]->Initialize();
+			worldTransformBlocks_[i][j]->translation_.x = kBlockWidth * i;
+			worldTransformBlocks_[i][j]->translation_.y = kBlockHeight * i;
+		}
+	}
+
+	//画面縦幅
+	const int kWindowWidth = 1280;
+	const int kWindowHeight = 720;
+
+	//デバッグカメラの生成
+	debugCamera_ = new DebugCamera(kWindowWidth, kWindowHeight);
 }
 
 void GameScene::Update() {
+
+	#ifdef _DEBUG
+	if (input_->TriggerKey(DIK_SPACE)) {
+		isDebugCameraActive_ = !isDebugCameraActive_;
+	}
+#endif // _DEBUG
+
 
 	//自キャラの更新
 	player_->Update();
 
 	//ブロックの更新
-	for (WorldTransform* worldTransformBlock : worldTransformBlocks_) {
-	
-		worldTransformBlock->matWorld_ = MakeAffineMatrix();
-		
-		//定数バッファに転送
-		worldTransformBlock->TransferMatrix();
+	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
+		for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
+			if (!worldTransformBlock)
+				continue;
+			worldTransformBlock->UpdateMatrix();
+		}
+	}
+
+	//カメラの処理
+	if (isDebugCameraActive_) {
+		debugCamera_->Update();
+		viewProjection_.matView = debugCamera_->GetViewProjection().matView;
+		viewProjection_.matProjection = debugCamera_->GetViewProjection().matProjection;
+		//ビュープロジェクション行列の更新と転送
+		viewProjection_.UpdateMatrix();
 	}
 }
 
@@ -115,6 +150,17 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
+	
+	//ブロックの描画
+	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
+		for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
+			if (!worldTransformBlock) {
+				continue;
+			}
+			model_->Draw(*worldTransformBlock, viewProjection_);
+		}
+	}
+
 
 	// スプライト描画後処理
 	//Sprite::PostDraw();

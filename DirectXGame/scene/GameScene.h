@@ -9,6 +9,7 @@
 #include "WorldTransform.h"
 #include "player.h"
 #include <vector>
+#include "DebugCamera.h"
 
 /// <summary>
 /// ゲームシーン
@@ -45,6 +46,7 @@ private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 	Audio* audio_ = nullptr;
+	DebugCamera* debugCamera_ = nullptr;
 
 	// テクスチャハンドル
 	uint32_t textureHandle_ = 0;
@@ -63,7 +65,10 @@ private: // メンバ変数
 
 	Model* modelBlock_ = nullptr;
 
-	std::vector<WorldTransform*> worldTransformBlocks_;
+	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
+
+	//デバッグカメラ
+	bool isDebugCameraActive_ = false;
 
 	/// <summary>
 	/// ゲームシーン用

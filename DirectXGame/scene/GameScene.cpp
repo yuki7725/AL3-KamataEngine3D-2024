@@ -9,6 +9,7 @@ GameScene::~GameScene() {
 	delete player_;
 	delete modelBlock_;
 	delete debugCamera_;
+	delete skydome_;
 
 	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
@@ -75,6 +76,11 @@ void GameScene::Initialize() {
 
 	//デバッグカメラの生成
 	debugCamera_ = new DebugCamera(kWindowWidth, kWindowHeight);
+
+	//skydomeの生成
+	skydome_ = new skydome();
+	//skydomeの初期化
+	skydome_->Initialize();
 }
 
 void GameScene::Update() {
@@ -106,6 +112,9 @@ void GameScene::Update() {
 		//ビュープロジェクション行列の更新と転送
 		viewProjection_.UpdateMatrix();
 	}
+
+	//skydomeの処理
+	skydome_->Update();
 }
 
 void GameScene::Draw() {
@@ -161,6 +170,8 @@ void GameScene::Draw() {
 		}
 	}
 
+	//skydomeの描画
+	skydome_->Draw();
 
 	// スプライト描画後処理
 	//Sprite::PostDraw();

@@ -74,6 +74,8 @@ private: // メンバ変数
 	// 天球
 	skydome* skydome_ = nullptr;
 
+	Model* modelSkyDome_ = nullptr;
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

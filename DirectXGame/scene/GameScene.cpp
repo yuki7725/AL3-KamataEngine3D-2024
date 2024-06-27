@@ -61,12 +61,12 @@ void GameScene::Initialize() {
 
 	//キューブの生成
 	for (uint32_t i = 0; i < kNumBlockHorizontal; ++i) {
-		for (uint32_t j = 0; j < kNumBlockVertical; ++i) {
+		for (uint32_t j = 0; j < kNumBlockVertical; ++j) {
 
-			worldTransformBlocks_[i][j] = new WorldTransform();
-			worldTransformBlocks_[i][j]->Initialize();
-			worldTransformBlocks_[i][j]->translation_.x = kBlockWidth * j;
-			worldTransformBlocks_[i][j]->translation_.y = kBlockHeight * i;
+			worldTransformBlocks_[j][i] = new WorldTransform();
+			worldTransformBlocks_[j][i]->Initialize();
+			worldTransformBlocks_[j][i]->translation_.x = kBlockWidth * j;
+			worldTransformBlocks_[j][i]->translation_.y = kBlockHeight * i;
 		}
 	}
 

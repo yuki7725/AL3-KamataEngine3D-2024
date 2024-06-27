@@ -126,6 +126,9 @@ void GameScene::Update() {
 
 void GameScene::Draw() {
 
+	//モデルを連動
+	modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
+
 	// コマンドリストの取得
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
 

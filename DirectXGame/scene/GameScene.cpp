@@ -99,7 +99,7 @@ void GameScene::Update() {
 	if (input_->TriggerKey(DIK_SPACE)) {
 		isDebugCameraActive_ = !isDebugCameraActive_;
 	}
-#endif // _DEBUG
+	#endif _DEBUG
 
 
 	//自キャラの更新
@@ -119,6 +119,9 @@ void GameScene::Update() {
 		debugCamera_->Update();
 		viewProjection_.matView = debugCamera_->GetViewProjection().matView;
 		viewProjection_.matProjection = debugCamera_->GetViewProjection().matProjection;
+		// ビュープロジェクション行列の転送
+		viewProjection_.TransferMatrix();
+	}else{
 		//ビュープロジェクション行列の更新と転送
 		viewProjection_.UpdateMatrix();
 	}
@@ -126,8 +129,7 @@ void GameScene::Update() {
 
 void GameScene::Draw() {
 
-	//モデルを連動
-	modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
+	
 
 	// コマンドリストの取得
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
@@ -164,8 +166,12 @@ void GameScene::Draw() {
 					continue;
 				}
 				model_->Draw(*worldTransformBlock, viewProjection_);
+				//モデルを連動
+				modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
 			}
 		}
+		
+		
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

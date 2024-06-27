@@ -176,6 +176,8 @@ void GameScene::Draw() {
 				continue;
 			}
 			model_->Draw(*worldTransformBlock, viewProjection_);
+			// モデルを連動
+			modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
 		}
 	}
 

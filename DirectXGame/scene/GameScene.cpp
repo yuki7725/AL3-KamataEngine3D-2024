@@ -51,6 +51,7 @@ void GameScene::Initialize() {
 	const float kBlockWidth = 2.0f;
 	//縦幅
 	const float kBlockHeight = 2.0f;
+
 	//要素数を変更する
 	worldTransformBlocks_.resize(kNumBlockVertical);
 	for (uint32_t i = 0; i < kNumBlockVertical; ++i) {
@@ -74,12 +75,13 @@ void GameScene::Initialize() {
 
 	//ブロックの生成
 	for (uint32_t i = 0; i < kNumBlockHorizontal; ++i) {
-		for (uint32_t j = 0; j < kNumBlockVertical; ++i) {
-
-			worldTransformBlocks_[i][j] = new WorldTransform();
-			worldTransformBlocks_[i][j]->Initialize();
-			worldTransformBlocks_[i][j]->translation_.x = kBlockWidth * i;
-			worldTransformBlocks_[i][j]->translation_.y = kBlockHeight * i;
+		for (uint32_t j = 0; j < kNumBlockVertical; ++j) {
+			if (map[j][i] == 1) {
+				worldTransformBlocks_[j][i] = new WorldTransform();
+				worldTransformBlocks_[j][i]->Initialize();
+				worldTransformBlocks_[j][i]->translation_.x = kBlockWidth * i;
+				worldTransformBlocks_[j][i]->translation_.y = kBlockHeight * j;
+			}
 		}
 	}
 
@@ -152,6 +154,15 @@ void GameScene::Draw() {
 	//自キャラの描画
 	player_->Draw();
 
+	//ブロックの描画
+		for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
+			for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
+				if (!worldTransformBlock) {
+					continue;
+				}
+				model_->Draw(*worldTransformBlock, viewProjection_);
+			}
+		}
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -165,19 +176,10 @@ void GameScene::Draw() {
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
 	
-	//ブロックの描画
-	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
-		for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
-			if (!worldTransformBlock) {
-				continue;
-			}
-			model_->Draw(*worldTransformBlock, viewProjection_);
-		}
-	}
-
+	
 
 	// スプライト描画後処理
-	//Sprite::PostDraw();
+	Sprite::PostDraw();
 
 	
 #pragma endregion

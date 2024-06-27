@@ -35,6 +35,7 @@ void GameScene::Initialize() {
 	worldTransform_.Initialize();
 
 	//ビュープロジェクションの初期化
+	viewProjection_.farZ = 5000;
 	viewProjection_.Initialize();
 
 	//自キャラの生成

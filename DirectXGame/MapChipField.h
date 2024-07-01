@@ -12,7 +12,9 @@ public:
 	
 	MapChipData mapChipData_;
 	
-	void ResetChipData();
+	void ResetMapChipData();
+
+	void LoadMapChipCsv(const std::string& filePath);
 
 
 private:

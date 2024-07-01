@@ -170,6 +170,9 @@ void GameScene::Draw() {
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
 	
+	//skyDomeの描画
+	skyDome_->Draw();
+
 	//ブロックの描画
 	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
@@ -178,12 +181,11 @@ void GameScene::Draw() {
 			}
 			model_->Draw(*worldTransformBlock, viewProjection_);
 			// モデルを連動
-			modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
+			//modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
 		}
 	}
 
-	//skyDomeの描画
-	skyDome_->Draw();
+	
 	
 #pragma endregion
 }

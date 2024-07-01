@@ -10,6 +10,7 @@ GameScene::~GameScene() {
 	delete modelBlock_;
 	delete debugCamera_;
 	delete skyDome_;
+	delete mapChipField_;
 
 	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
@@ -84,6 +85,10 @@ void GameScene::Initialize() {
 	skyDome_->Initialize();
 	//skyDome3Dモデルの生成
 	modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
+
+	//マップチップ
+	mapChipField_ = new MapChipField;
+	mapChipField_->LoadMapChipCsv("Resources/blocks.csv");
 }
 
 void GameScene::Update() {

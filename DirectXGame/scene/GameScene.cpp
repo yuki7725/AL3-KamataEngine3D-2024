@@ -78,12 +78,12 @@ void GameScene::Initialize() {
 	//デバッグカメラの生成
 	debugCamera_ = new DebugCamera(kWindowWidth, kWindowHeight);
 
-	//skyDomeの生成
-	skyDome_ = new skyDome();
-	//skyDomeの初期化
-	skyDome_->Initialize();
-	//skyDome3Dモデルの生成
-	modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
+	////skyDomeの生成
+	//skyDome_ = new skyDome();
+	////skyDomeの初期化
+	//skyDome_->Initialize();
+	////skyDome3Dモデルの生成
+	//modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
 }
 
 void GameScene::Update() {
@@ -125,8 +125,7 @@ void GameScene::Update() {
 
 void GameScene::Draw() {
 
-	// モデルを連動
-	modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
+	
 
 
 	// コマンドリストの取得
@@ -157,6 +156,23 @@ void GameScene::Draw() {
 	//自キャラの描画
 	player_->Draw();
 
+	// モデルを連動
+	modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
+	
+	//skyDomeの描画
+	skyDome_->Draw();
+
+	//ブロックの描画
+	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
+		for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
+			if (!worldTransformBlock) {
+				continue;
+			}
+			model_->Draw(*worldTransformBlock, viewProjection_);
+			// モデルを連動
+			modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
+		}
+	}
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
@@ -170,20 +186,7 @@ void GameScene::Draw() {
 	/// ここに前景スプライトの描画処理を追加できる
 	/// </summary>
 	
-	//skyDomeの描画
-	skyDome_->Draw();
-
-	//ブロックの描画
-	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
-		for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
-			if (!worldTransformBlock) {
-				continue;
-			}
-			model_->Draw(*worldTransformBlock, viewProjection_);
-			// モデルを連動
-			//modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
-		}
-	}
+	
 
 	
 	

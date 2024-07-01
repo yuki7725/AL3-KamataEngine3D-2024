@@ -10,6 +10,10 @@
 
 class skyDome {
 public:
+
+	skyDome();
+	~skyDome();
+
 	/// <summary>
 	/// 初期化
 	/// </summary>
@@ -34,6 +38,11 @@ private:
 	ViewProjection viewProjection_;
 	// テクスチャハンドル
 	uint32_t textureHandle_ = 0u;
+
+	// 天球
+	skyDome* skyDome_ = nullptr;
+
+	Model* modelSkyDome_ = nullptr;
 	
 };
 

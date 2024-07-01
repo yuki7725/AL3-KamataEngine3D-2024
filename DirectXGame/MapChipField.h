@@ -11,6 +11,9 @@ class MapChipField {
 public:
 	
 	MapChipData mapChipData_;
+	
+	void ResetChipData();
+
 
 private:
 	//1ブロックのサイズ
@@ -30,3 +33,5 @@ enum class MapChipType {
 struct MapChipData {
 	std::vector<std::vector<MapChipType>> data;
 };
+
+

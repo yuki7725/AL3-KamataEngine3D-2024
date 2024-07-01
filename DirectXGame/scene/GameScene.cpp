@@ -47,9 +47,6 @@ void GameScene::Initialize() {
 
 	modelBlock_ = new Model();
 
-	//表示ブロック
-	GenerateBlocks();
-
 	//要素数
 	const uint32_t kNumBlockHorizontal = 20;
 	const uint32_t kNumBlockVertical = 10;
@@ -93,7 +90,8 @@ void GameScene::Initialize() {
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/blocks.csv");
 
-	
+	//表示ブロック
+	GenerateBlocks();
 }
 
 void GameScene::Update() {

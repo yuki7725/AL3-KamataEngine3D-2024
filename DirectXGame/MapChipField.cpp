@@ -3,10 +3,11 @@
 #include <fstream>
 #include <sstream>
 
-
-std::map<std::string, MapChipType> mapChipTable = {
-    {"0", MapChipType::kBlank},
-    {"1", MapChipType::kBlock},
+namespace {
+	std::map<std::string, MapChipType> mapChipTable = {
+		{"0", MapChipType::kBlank},
+		{"1", MapChipType::kBlock},
+	};
 };
 
 void MapChipField::ResetMapChipData() {

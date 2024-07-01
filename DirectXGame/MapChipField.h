@@ -4,6 +4,8 @@
 #include "ViewProjection.h"
 #include "cassert"
 
+
+
 /// <summary>
 /// マップチップフィールド
 /// </summary>
@@ -17,7 +19,7 @@ public:
 	void LoadMapChipCsv(const std::string& filePath);
 	
 	MapChipType GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex);
-
+	Vector3 GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex);
 
 	//1ブロックのサイズ
 	static inline const float kBlockWidth = 1.0f;
@@ -27,7 +29,7 @@ public:
 	static inline const uint32_t kNumBlockVertical = 20;
 	static inline const uint32_t kNumBlockHorizontal = 100;
 
-	Vector3 GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex);
+	uint32_t GetNumBlockVertical();
 
 private:
 };

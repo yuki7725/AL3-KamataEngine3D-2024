@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 
+
 std::map<std::string, MapChipType> mapChipTable = {
     {"0", MapChipType::kBlank},
     {"1", MapChipType::kBlock},
@@ -51,5 +52,16 @@ void MapChipField::LoadMapChipCsv(const std::string& filePath) {
 		}
 	}
 
+}
+
+MapChipType MapChipField::GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex) {
+	if (xIndex < 0 || kNumBlockHorizontal - 1 < xIndex) {
+		return MapChipType::kBlank;
+	}
+	if (yIndex < 0 || kNumBlockVertical - 1 < yIndex) {
+		return MapChipType::kBlank;
+	}
+
+	return mapChipData_.data[yIndex][xIndex];
 }
 

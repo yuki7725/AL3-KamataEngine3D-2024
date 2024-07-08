@@ -54,6 +54,7 @@ void GameScene::Initialize() {
 	const float kBlockWidth = 2.0f;
 	//縦幅
 	const float kBlockHeight = 2.0f;
+
 	//要素数を変更する
 	worldTransformBlocks_.resize(kNumBlockVertical);
 	for (uint32_t i = 0; i < kNumBlockVertical; ++i) {

@@ -37,13 +37,6 @@ private:
 	Model* model_ = nullptr;
 	//ビュープロジェクション
 	ViewProjection *viewProjection_=nullptr;
-	// テクスチャハンドル
-	//uint32_t textureHandle_ = 0u;
-
-	// 天球
-	/*skyDome* skyDome_ = nullptr;
-
-	Model* modelSkyDome_ = nullptr;*/
 	
 };
 

@@ -4,6 +4,10 @@
 #include "ViewProjection.h"
 
 class MapChipField {
+	
+	void ResetMapChipData();
+
+	void LoadMapChipCsv(const std::string& filePath);
 
 	//1ブロックのサイズ
 	static inline const float kBlockWidth = 1.0f;
@@ -24,3 +28,4 @@ enum class MapChipType {
 struct MapChipData {
 	std::vector<std::vector<MapChipType>> data;
 };
+

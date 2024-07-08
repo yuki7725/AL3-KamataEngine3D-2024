@@ -11,6 +11,7 @@
 #include <vector>
 #include "DebugCamera.h"
 #include "skydome.h"
+#include "MapChipField.h"
 
 /// <summary>
 /// ゲームシーン

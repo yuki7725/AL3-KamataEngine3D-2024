@@ -27,7 +27,7 @@ void GameScene::Initialize() {
 
 	//ファイル名を指定してテクスチャを読み込む
 	textureHandle_ = TextureManager::Load("cube/cube.jpg");
-	modelSkyDome_ = Model::CreateFromOBJ("skyDome", true);
+	modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
 
 	//3Dモデルの生成
 	model_ = Model::Create();

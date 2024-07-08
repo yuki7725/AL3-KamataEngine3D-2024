@@ -17,12 +17,7 @@ void skyDome::Initialize(Model*model,ViewProjection*viewProjection) {
 	worldTransform_.Initialize();
 	viewProjection_=viewProjection;
 
-	// skyDome3Dモデルの生成
-	//modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
-
 	worldTransform_.scale_ = {1, 1, 1};
-
-	// 引数の内容をメンバ変数に記録
 }
 
 void skyDome::Update() {

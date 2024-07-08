@@ -18,6 +18,10 @@ class MapChipField {
 	static inline const uint32_t kNumBlockHorizontal = 100;
 
 	MapChipData mapChipData_;
+
+	MapChipType GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex);
+
+	Vector3 GetChipPositionByIndex(uint32_t xIndex, uint32_t yIndex);
 };
 
 enum class MapChipType { 

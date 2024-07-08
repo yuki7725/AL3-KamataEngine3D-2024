@@ -26,84 +26,87 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
 
-	//ファイル名を指定してテクスチャを読み込む
+	// ファイル名を指定してテクスチャを読み込む
 	textureHandle_ = TextureManager::Load("cube/cube.jpg");
 	modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
 
-	//3Dモデルの生成
+	// 3Dモデルの生成
 	model_ = Model::Create();
 
-	//ワールドトランスフォームの初期化
+	// ワールドトランスフォームの初期化
 	worldTransform_.Initialize();
 
-	//ビュープロジェクションの初期化
+	// ビュープロジェクションの初期化
 	viewProjection_.farZ = 5000;
 	viewProjection_.Initialize();
 
-	//自キャラの生成
+	// 自キャラの生成
 	player_ = new Player();
 
-	//自キャラの初期化
-	player_->Initialize(model_,textureHandle_,&viewProjection_);
+	// 自キャラの初期化
+	player_->Initialize(model_, textureHandle_, &viewProjection_);
 
 	modelBlock_ = new Model();
 
-	//要素数
-	const uint32_t kNumBlockHorizontal = 20;
-	const uint32_t kNumBlockVertical = 10;
-	//横幅
+	// 要素数
+	/*const uint32_t kNumBlockHorizontal = 20;
+	const uint32_t kNumBlockVertical = 10;*/
+	// 横幅
 	const float kBlockWidth = 2.0f;
-	//縦幅
+	// 縦幅
 	const float kBlockHeight = 2.0f;
 
-	//要素数を変更する
-	worldTransformBlocks_.resize(kNumBlockVertical);
-	for (uint32_t i = 0; i < kNumBlockVertical; ++i) {
-		//一列の要素数を設定
-		worldTransformBlocks_[i].resize(kNumBlockHorizontal);
-	}
+	GenerateBlocks();
+
+	//// 要素数を変更する
+	//worldTransformBlocks_.resize(kNumBlockVertical);
+	//for (uint32_t i = 0; i < kNumBlockVertical; ++i) {
+	//	// 一列の要素数を設定
+	//	worldTransformBlocks_[i].resize(kNumBlockHorizontal);
+	//}
 
 	// ブロックのマップチップ
-	int map[kNumBlockVertical][kNumBlockHorizontal] = {
+	/*int map[kNumBlockVertical][kNumBlockHorizontal] = {
 	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
-        {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
 	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
-        {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
 	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
-        {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
 	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-	};
+	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+	};*/
 
-	//キューブの生成
-	for (uint32_t i = 0; i < kNumBlockHorizontal; ++i) {
-		for (uint32_t j = 0; j < kNumBlockVertical; ++j) {
-			if (map[j][i] == 1) {
-				worldTransformBlocks_[j][i] = new WorldTransform();
-				worldTransformBlocks_[j][i]->Initialize();
-				worldTransformBlocks_[j][i]->translation_.x = kBlockWidth * i;
-				worldTransformBlocks_[j][i]->translation_.y = kBlockHeight * j;
-			}
-		}
-	}
+	////キューブの生成
+	// for (uint32_t i = 0; i < kNumBlockHorizontal; ++i) {
+	//	for (uint32_t j = 0; j < kNumBlockVertical; ++j) {
+	//		if (map[j][i] == 1) {
+	//			worldTransformBlocks_[j][i] = new WorldTransform();
+	//			worldTransformBlocks_[j][i]->Initialize();
+	//			worldTransformBlocks_[j][i]->translation_.x = kBlockWidth * i;
+	//			worldTransformBlocks_[j][i]->translation_.y = kBlockHeight * j;
+	//		}
+	//	}
+	// }
 
-	//画面縦幅
+	// 画面縦幅
 	const int kWindowWidth = 1280;
 	const int kWindowHeight = 720;
 
-	//デバッグカメラの生成
+	// デバッグカメラの生成
 	debugCamera_ = new DebugCamera(kWindowWidth, kWindowHeight);
 
-	//skyDomeの生成
+	// skyDomeの生成
 	skyDome_ = new skyDome();
-	//skyDomeの初期化
-	skyDome_->Initialize(modelSkyDome_,&viewProjection_);
+	// skyDomeの初期化
+	skyDome_->Initialize(modelSkyDome_, &viewProjection_);
 
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/blocks.csv");
 }
+	
 
 void GameScene::Update() {
 
@@ -212,3 +215,31 @@ void GameScene::Draw() {
 	
 #pragma endregion
 }
+
+void GameScene::GenerateBlocks() {
+	
+	// 要素数
+	uint32_t kNumBlockHorizontal = mapChipField_->GetNumBlockHorizontal();
+	uint32_t kNumBlockVertical = mapChipField_->GetNumBlockVertical();
+
+	// 要素数を変更する
+	worldTransformBlocks_.resize(kNumBlockVertical);
+	for (uint32_t i = 0; i < kNumBlockVertical; ++i) {
+		// 一列の要素数を設定
+		worldTransformBlocks_[i].resize(kNumBlockHorizontal);
+	}
+
+	// キューブの生成
+	for (uint32_t i = 0; i < kNumBlockHorizontal; ++i) {
+		for (uint32_t j = 0; j < kNumBlockVertical; ++j) {
+			if (mapChipField_->GetMapChipTypeByIndex(j,i)== MapChipType::kBlock) {
+				WorldTransform* worldTransform = new WorldTransform();
+				worldTransform->Initialize();
+				worldTransformBlocks_[j][i] = worldTransform;
+				worldTransformBlocks_[j][i]->translation_ = mapChipField_->GetMapChipPositionByIndex(j, i);
+			}
+		}
+	}
+}
+
+

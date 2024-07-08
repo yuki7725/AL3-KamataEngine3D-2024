@@ -80,6 +80,8 @@ private: // メンバ変数
 	//マップチップフィールド
 	MapChipField* mapChipField_;
 
+	void GenerateBlocks();
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

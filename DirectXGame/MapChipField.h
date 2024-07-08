@@ -2,9 +2,17 @@
 #include "Model.h"
 #include "WorldTransform.h"
 #include "ViewProjection.h"
+#include <vector>
+#include <map>
+#include <fstream>
+#include <sstream>
+#include "assert.h"
+#include "string.h"
+
 
 class MapChipField {
 	
+public:
 	void ResetMapChipData();
 
 	void LoadMapChipCsv(const std::string& filePath);
@@ -21,7 +29,12 @@ class MapChipField {
 
 	MapChipType GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex);
 
-	Vector3 GetChipPositionByIndex(uint32_t xIndex, uint32_t yIndex);
+	Vector3 GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex);
+
+	uint32_t GetNumBlockVertical();
+	uint32_t GetNumBlockHorizontal();
+
+private:
 };
 
 enum class MapChipType { 

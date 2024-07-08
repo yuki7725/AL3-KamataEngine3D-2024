@@ -69,6 +69,7 @@ private: // メンバ変数
 
 	//デバッグカメラ
 	bool isDebugCameraActive_ = false;
+	
 
 	/// <summary>
 	/// ゲームシーン用

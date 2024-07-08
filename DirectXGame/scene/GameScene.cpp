@@ -61,6 +61,20 @@ void GameScene::Initialize() {
 		worldTransformBlocks_[i].resize(kNumBlockHorizontal);
 	}
 
+	// ブロックのマップチップ
+	int map[kNumBlockVertical][kNumBlockHorizontal] = {
+	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+        {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+        {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+        {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+        {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
+	};
+
 	//キューブの生成
 	for (uint32_t i = 0; i < kNumBlockHorizontal; ++i) {
 		for (uint32_t j = 0; j < kNumBlockVertical; ++j) {
@@ -83,8 +97,6 @@ void GameScene::Initialize() {
 	skyDome_ = new skyDome();
 	//skyDomeの初期化
 	skyDome_->Initialize(modelSkyDome_,&viewProjection_);
-	////skyDome3Dモデルの生成
-	//modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
 }
 
 void GameScene::Update() {

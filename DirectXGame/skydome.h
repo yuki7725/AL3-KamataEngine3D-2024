@@ -1,5 +1,6 @@
 #pragma once
 
+#include "assert.h"
 #include "Model.h"
 #include "WorldTransform.h"
 #include "ViewProjection.h"
@@ -17,7 +18,7 @@ public:
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	void Initialize();
+	void Initialize(Model* model, ViewProjection* viewProjection);
 	
 	/// <summary>
 	/// 更新
@@ -35,14 +36,14 @@ private:
 	//モデル
 	Model* model_ = nullptr;
 	//ビュープロジェクション
-	ViewProjection viewProjection_;
+	ViewProjection *viewProjection_=nullptr;
 	// テクスチャハンドル
-	uint32_t textureHandle_ = 0u;
+	//uint32_t textureHandle_ = 0u;
 
 	// 天球
-	skyDome* skyDome_ = nullptr;
+	/*skyDome* skyDome_ = nullptr;
 
-	Model* modelSkyDome_ = nullptr;
+	Model* modelSkyDome_ = nullptr;*/
 	
 };
 

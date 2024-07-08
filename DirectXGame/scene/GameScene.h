@@ -55,6 +55,7 @@ private: // メンバ変数
 
 	// 3Dモデルデータ
 	Model* model_ = nullptr;
+	Model* modelSkyDome_ = nullptr;//天球
 
 	// ワールドトランスフォーム
 	WorldTransform worldTransform_;
@@ -62,12 +63,12 @@ private: // メンバ変数
 	// ビュープロジェクション
 	ViewProjection viewProjection_;
 
+	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
+
 	// 自キャラ
 	Player* player_ = nullptr;
 
 	Model* modelBlock_ = nullptr;
-
-	std::vector<std::vector<WorldTransform*>> worldTransformBlocks_;
 
 	//デバッグカメラ
 	bool isDebugCameraActive_ = false;
@@ -75,7 +76,7 @@ private: // メンバ変数
 	// 天球
 	skyDome* skyDome_ = nullptr;
 
-	Model* modelSkyDome_ = nullptr;
+	//Model* modelSkyDome_ = nullptr;
 
 	/// <summary>
 	/// ゲームシーン用

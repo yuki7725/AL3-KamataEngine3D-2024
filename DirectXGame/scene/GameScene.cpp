@@ -27,6 +27,7 @@ void GameScene::Initialize() {
 
 	//ファイル名を指定してテクスチャを読み込む
 	textureHandle_ = TextureManager::Load("cube/cube.jpg");
+	modelSkyDome_ = Model::CreateFromOBJ("skyDome", true);
 
 	//3Dモデルの生成
 	model_ = Model::Create();
@@ -78,10 +79,10 @@ void GameScene::Initialize() {
 	//デバッグカメラの生成
 	debugCamera_ = new DebugCamera(kWindowWidth, kWindowHeight);
 
-	////skyDomeの生成
-	//skyDome_ = new skyDome();
-	////skyDomeの初期化
-	//skyDome_->Initialize();
+	//skyDomeの生成
+	skyDome_ = new skyDome();
+	//skyDomeの初期化
+	skyDome_->Initialize(modelSkyDome_,&viewProjection_);
 	////skyDome3Dモデルの生成
 	//modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
 }
@@ -188,7 +189,8 @@ void GameScene::Draw() {
 	
 	
 
-	
+	//スプライト描画後処理
+	Sprite::PostDraw();
 	
 #pragma endregion
 }

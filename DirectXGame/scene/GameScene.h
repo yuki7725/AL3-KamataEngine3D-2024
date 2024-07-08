@@ -77,7 +77,8 @@ private: // メンバ変数
 	// 天球
 	skyDome* skyDome_ = nullptr;
 
-	//Model* modelSkyDome_ = nullptr;
+	//マップチップフィールド
+	MapChipField* mapChipField_;
 
 	/// <summary>
 	/// ゲームシーン用

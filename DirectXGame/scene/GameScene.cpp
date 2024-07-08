@@ -10,6 +10,7 @@ GameScene::~GameScene() {
 	delete modelBlock_;
 	delete debugCamera_;
 	delete skyDome_;
+	delete mapChipField_;
 
 	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
@@ -99,6 +100,9 @@ void GameScene::Initialize() {
 	skyDome_ = new skyDome();
 	//skyDomeの初期化
 	skyDome_->Initialize(modelSkyDome_,&viewProjection_);
+
+	mapChipField_ = new MapChipField;
+	mapChipField_->LoadMapChipCsv("Resources/blocks.csv");
 }
 
 void GameScene::Update() {

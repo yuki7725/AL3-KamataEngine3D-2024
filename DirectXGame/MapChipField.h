@@ -9,6 +9,15 @@
 #include "assert.h"
 #include "string.h"
 
+enum class MapChipType { 
+	kBlank,//空白
+	kBlock,//ブロック
+};
+
+struct MapChipData {
+	std::vector<std::vector<MapChipType>> data;
+};
+
 
 class MapChipField {
 	
@@ -37,12 +46,4 @@ public:
 private:
 };
 
-enum class MapChipType { 
-	kBlank,//空白
-	kBlock,//ブロック
-};
-
-struct MapChipData {
-	std::vector<std::vector<MapChipType>> data;
-};
 

@@ -1,45 +1,43 @@
 #include "MapChipField.h"
 
 namespace {
-    std::map<std::string, MapChipType> mapChipTable = {
-        {"0", MapChipType::kBlank},
-        {"1", MapChipType::kBlock},
-    };
-}
+std::map<std::string, MapChipType> mapChipTable = {
+    {"0", MapChipType::kBlank},
+    {"1", MapChipType::kBlock},
+};
+};
 
 //マップチップデータをリセットする関数
-void MapChipField::ResetMapChipData() 
-{
+void MapChipField::ResetMapChipData() {
 	mapChipData_.data.clear();
 	mapChipData_.data.resize(kNumBlockVertical);
 	for (std::vector<MapChipType>& mapChipDataLine : mapChipData_.data) {
 		mapChipDataLine.resize(kNumBlockHorizontal);
-    }
-}
+	}
+};
 
-void MapChipField::LoadMapChipCsv(const std::string& filePath) 
-{  
-    //マップチップデータをリセット
+void MapChipField::LoadMapChipCsv(const std::string& filePath) {
+	// マップチップデータをリセット
 	ResetMapChipData();
 
-    //ファイルを開く
+	// ファイルを開く
 	std::ifstream file;
 	file.open(filePath);
 	assert(file.is_open());
 
-	//マップチップCSV
+	// マップチップCSV
 	std::stringstream mapChipCsv;
-	//ファイルの内容を文字列ストリームにコピー
+	// ファイルの内容を文字列ストリームにコピー
 	mapChipCsv << file.rdbuf();
-	//ファイルを閉じる
+	// ファイルを閉じる
 	file.close();
 
-	//CSVからマップチップデータを読み込む
+	// CSVからマップチップデータを読み込む
 	for (uint32_t i = 0; i < kNumBlockVertical; ++i) {
 		std::string line;
 		getline(mapChipCsv, line);
 
-		//1行分の文字列をストリームに変換して解析しやすくする
+		// 1行分の文字列をストリームに変換して解析しやすくする
 		std::istringstream line_stream(line);
 
 		for (uint32_t j = 0; j < kNumBlockHorizontal; ++j) {
@@ -51,9 +49,9 @@ void MapChipField::LoadMapChipCsv(const std::string& filePath)
 			}
 		}
 	}
-}
+};
 
-MapChipType MapChipField::GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex) { 
+MapChipType MapChipField::GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex) {
 
 	if (xIndex < 0 || kNumBlockHorizontal - 1 < xIndex) {
 		return MapChipType::kBlank;
@@ -62,11 +60,12 @@ MapChipType MapChipField::GetMapChipTypeByIndex(uint32_t xIndex, uint32_t yIndex
 		return MapChipType::kBlank;
 	}
 	return mapChipData_.data[yIndex][xIndex];
-}
+};
 
-Vector3 MapChipField::GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex) 
+Vector3 MapChipField::GetMapChipPositionByIndex(uint32_t xIndex, uint32_t yIndex)
 {
-	return Vector3(kBlockWidth * xIndex, kBlockHeight * (kNumBlockVertical - 1 - yIndex), 0); }
+	return Vector3(kBlockWidth * xIndex, kBlockHeight * (kNumBlockVertical - 1 - yIndex), 0); 
+};
 
 uint32_t MapChipField::GetNumBlockVertical() { return kNumBlockVertical; }
 

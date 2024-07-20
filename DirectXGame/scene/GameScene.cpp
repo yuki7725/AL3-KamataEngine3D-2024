@@ -52,11 +52,11 @@ void GameScene::Initialize() {
 	/*const uint32_t kNumBlockHorizontal = 20;
 	const uint32_t kNumBlockVertical = 10;*/
 	// 横幅
-	const float kBlockWidth = 2.0f;
+	//const float kBlockWidth = 2.0f;
 	// 縦幅
-	const float kBlockHeight = 2.0f;
+	//const float kBlockHeight = 2.0f;
 
-	GenerateBlocks();
+	
 
 	//// 要素数を変更する
 	//worldTransformBlocks_.resize(kNumBlockVertical);
@@ -103,6 +103,7 @@ void GameScene::Initialize() {
 	// skyDomeの初期化
 	skyDome_->Initialize(modelSkyDome_, &viewProjection_);
 
+	GenerateBlocks();
 	mapChipField_ = new MapChipField;
 	mapChipField_->LoadMapChipCsv("Resources/blocks.csv");
 }

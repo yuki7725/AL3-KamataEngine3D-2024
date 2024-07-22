@@ -78,7 +78,7 @@ private: // メンバ変数
 	skyDome* skyDome_ = nullptr;
 
 	//マップチップフィールド
-	MapChipField* mapChipField_ = nullptr;
+	MapChipField* mapChipField_;
 
 	void GenerateBlocks();
 

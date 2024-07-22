@@ -103,9 +103,10 @@ void GameScene::Initialize() {
 	// skyDomeの初期化
 	skyDome_->Initialize(modelSkyDome_, &viewProjection_);
 
-	GenerateBlocks();
+	//マップチップフィールド
 	mapChipField_ = new MapChipField;
 	mapChipField_ -> LoadMapChipCsv("Resources/blocks.csv");
+	GenerateBlocks();
 }
 	
 

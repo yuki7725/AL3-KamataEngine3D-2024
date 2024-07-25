@@ -51,6 +51,9 @@ void Player::Update() {
 	worldTransform_.translation_.y += velocity_.y;
 	worldTransform_.translation_.z += velocity_.z;
 
+	//最大速度制限
+	velocity_.x = std::clamp(velocity_.x, -kLimitRunSpeed, kLimitRunSpeed);
+
 	//行列を更新して定数バッファに転送
 	worldTransform_.UpdateMatrix();
 }

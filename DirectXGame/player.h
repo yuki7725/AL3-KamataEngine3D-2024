@@ -4,6 +4,7 @@
 #include "ViewProjection.h"
 #include "cassert"
 #include "Input.h"
+#include <algorithm>
 
 class Player {
 public: 
@@ -34,6 +35,7 @@ private:
 
 	static inline const float kAcceleration = 0.05f;
 	static inline const float kAttenuation = 0.05f;
+	static inline const float kLimitRunSpeed = 0.05f;
 
 	Vector3 velocity_ = {};
 

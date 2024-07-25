@@ -33,8 +33,16 @@ void Player::Update() {
 	//左右移動操作
 	Vector3 acceleration = {};
 	if (Input::GetInstance()->PushKey(DIK_RIGHT)) {
+		//左移動中の右入力
+		if (velocity_.x < 0.0f) {
+			velocity_.x *= (1.0f - kAttenuation);
+		}
 		acceleration.x += kAcceleration;
 	} else if (Input::GetInstance()->PushKey(DIK_LEFT)) {
+		//右移動中の左入力
+		if (velocity_.x > 0.0f) {
+			velocity_.x *= (1.0f - kAttenuation);
+		}
 		acceleration.x -= kAcceleration;
 	} else {
 		//移動減衰

@@ -7,7 +7,7 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 	delete model_;
 	delete player_;
-	delete modelBlock_;
+	delete modelPlayer_;
 	delete debugCamera_;
 	delete skyDome_;
 	delete mapChipField_;
@@ -29,6 +29,7 @@ void GameScene::Initialize() {
 	// ファイル名を指定してテクスチャを読み込む
 	textureHandle_ = TextureManager::Load("cube/cube.jpg");
 	modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
+	//modelPlayer_ = Model::CreateFromOBJ("player",true);
 
 	// 3Dモデルの生成
 	model_ = Model::Create();
@@ -46,7 +47,7 @@ void GameScene::Initialize() {
 	// 自キャラの初期化
 	player_->Initialize(model_, textureHandle_, &viewProjection_);
 
-	modelBlock_ = new Model();
+	modelPlayer_ = new Model();
 
 	// 要素数
 	/*const uint32_t kNumBlockHorizontal = 20;

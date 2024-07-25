@@ -7,7 +7,7 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 	delete model_;
 	delete player_;
-	delete modelPlayer_;
+	delete modelBlock_;
 	delete debugCamera_;
 	delete skyDome_;
 	delete mapChipField_;
@@ -47,7 +47,7 @@ void GameScene::Initialize() {
 	// 自キャラの初期化
 	player_->Initialize(model_, textureHandle_, &viewProjection_);
 
-	modelPlayer_ = new Model();
+	modelBlock_ = new Model();
 
 	// 要素数
 	/*const uint32_t kNumBlockHorizontal = 20;
@@ -104,9 +104,10 @@ void GameScene::Initialize() {
 	// skyDomeの初期化
 	skyDome_->Initialize(modelSkyDome_, &viewProjection_);
 
-	GenerateBlocks();
+	
 	mapChipField_ = new MapChipField;
 	mapChipField_ -> LoadMapChipCsv("Resources/blocks.csv");
+	GenerateBlocks();
 }
 	
 

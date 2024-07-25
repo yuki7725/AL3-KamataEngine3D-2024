@@ -76,6 +76,16 @@ void Player::Update() {
 	//最大速度制限
 	velocity_.x = std::clamp(velocity_.x, -kLimitRunSpeed, kLimitRunSpeed);
 
+	//旋回制御
+	float destinationRotationYTable[] = {
+		std::numbers::pi_v<float> / 2.0f, 
+		std::numbers::pi_v<float> * 3.0f / 2.0f
+	};
+	//状態に応じた角度を取得
+	float destinationRotationY = destinationRotationYTable[static_cast<uint32_t>(lrDirection_)];
+	//自キャラの角度を設定
+	worldTransform_.rotation_.y = destinationRotationY;
+
 	//行列を更新して定数バッファに転送
 	worldTransform_.UpdateMatrix();
 }

@@ -53,5 +53,6 @@ private:
 	//旋回時間(秒)
 	static inline const float kTimeTurn = 0.3f;
 
-	
+	//接地状態フラグ
+
 };

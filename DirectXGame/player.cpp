@@ -3,18 +3,20 @@
 
 Player::Player(){};
 
-Player::~Player(){};
+Player::~Player() {}
+void Player::Initialize(Model* model, ViewProjection* viewProjection, Vector3& position)
+{
 
-void Player::Initialize(Model* model, uint32_t textureHandle, ViewProjection* viewProjection) {
 	//nullポインタチェック
 	assert(model); 
 
 	//引数として受け取ったデータをメンバ変数に記録
 	model_ = model;
-	textureHandle_ = textureHandle;
+	//textureHandle_ = textureHandle;
 
 	//ワールド変換の初期化
 	worldTransform_.Initialize();
+	worldTransform_.translation_ = position;
 
 	//引数の内容をメンバ変数に記録
 	viewProjection_ = viewProjection;

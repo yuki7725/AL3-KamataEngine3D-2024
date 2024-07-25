@@ -10,7 +10,7 @@ public:
 	Player();
 	~Player();
 
-	void Initialize(Model* model, uint32_t textureHandle, ViewProjection* viewProjection);
+	void Initialize(Model* model, ViewProjection* viewProjection,Vector3& position);
 
 	void Update();
 

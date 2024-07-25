@@ -37,13 +37,27 @@ void Player::Update() {
 		if (velocity_.x < 0.0f) {
 			velocity_.x *= (1.0f - kAttenuation);
 		}
+
+		//向き変更
+		if (lrDirection_ != LRDirection::kRight) {
+			lrDirection_ = LRDirection::kRight;
+		}
+
 		acceleration.x += kAcceleration;
+
 	} else if (Input::GetInstance()->PushKey(DIK_LEFT)) {
 		//右移動中の左入力
 		if (velocity_.x > 0.0f) {
 			velocity_.x *= (1.0f - kAttenuation);
 		}
+
+		//向き変更
+		if (lrDirection_ != LRDirection::kLeft) {
+			lrDirection_ = LRDirection::kLeft;
+		}
+
 		acceleration.x -= kAcceleration;
+
 	} else {
 		//移動減衰
 		velocity_.x *= (1.0f - kAttenuation);

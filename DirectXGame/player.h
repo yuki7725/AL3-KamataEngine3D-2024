@@ -18,6 +18,12 @@ public:
 
 	void Draw();
 
+	enum class LRDirection {
+		kRight,
+		kLeft,
+	};
+	
+	LRDirection lrDirection_ = LRDirection::kRight;
 
 private:
 
@@ -39,4 +45,5 @@ private:
 
 	Vector3 velocity_ = {};
 
+	
 };

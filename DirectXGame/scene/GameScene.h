@@ -57,12 +57,9 @@ private: // メンバ変数
 	// 3Dモデルデータ
 	Model* model_ = nullptr;
 	Model* modelSkyDome_ = nullptr;//天球
-<<<<<<< Updated upstream
 
-=======
 	Model* modelPlayer_ = nullptr;
 	
->>>>>>> Stashed changes
 	// ワールドトランスフォーム
 	WorldTransform worldTransform_;
 
@@ -74,11 +71,8 @@ private: // メンバ変数
 	// 自キャラ
 	Player* player_ = nullptr;
 
-<<<<<<< Updated upstream
 	Model* modelBlock_ = nullptr;
 
-=======
->>>>>>> Stashed changes
 	//デバッグカメラ
 	bool isDebugCameraActive_ = false;
 

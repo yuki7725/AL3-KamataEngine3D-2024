@@ -29,7 +29,7 @@ void GameScene::Initialize() {
 	// ファイル名を指定してテクスチャを読み込む
 	textureHandle_ = TextureManager::Load("cube/cube.jpg");
 	modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
-	//modelPlayer_ = Model::CreateFromOBJ("player",true);
+	modelPlayer_ = Model::CreateFromOBJ("player",true);
 
 	// 3Dモデルの生成
 	model_ = Model::Create();
@@ -45,7 +45,7 @@ void GameScene::Initialize() {
 	player_ = new Player();
 
 	//座標をマップチップ番号で指定
-	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(18, 1);
+	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(1, 18);
 
 	// 自キャラの初期化
 	player_->Initialize(modelPlayer_, &viewProjection_,playerPosition);

@@ -1,5 +1,6 @@
 #include "player.h"
 #include <assert.h>
+#include <numbers>
 
 Player::Player(){};
 
@@ -20,6 +21,9 @@ void Player::Initialize(Model* model, ViewProjection* viewProjection, Vector3& p
 
 	//引数の内容をメンバ変数に記録
 	viewProjection_ = viewProjection;
+
+	//初期回転
+	worldTransform_.rotation_.y = std::numbers::pi_v<float> / 2.0f;
 
 }
 

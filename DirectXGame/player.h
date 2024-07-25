@@ -45,5 +45,13 @@ private:
 
 	Vector3 velocity_ = {};
 
+	//旋回開始時の角度
+	float turnFirstRotationY_ = 0.0f;
+	//旋回タイマー
+	float turnTimer_ = 0.0f;
+
+	//旋回時間(秒)
+	static inline const float kTimeTur = 0.3f;
+
 	
 };

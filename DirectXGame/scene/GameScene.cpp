@@ -44,8 +44,11 @@ void GameScene::Initialize() {
 	// 自キャラの生成
 	player_ = new Player();
 
+	//座標をマップチップ番号で指定
+	Vector3 playerPosition = mapChipField_->GetMapChipPositionByIndex(18, 1);
+
 	// 自キャラの初期化
-	player_->Initialize(model_, textureHandle_, &viewProjection_);
+	player_->Initialize(modelPlayer_, &viewProjection_,playerPosition);
 
 	modelBlock_ = new Model();
 
@@ -108,6 +111,7 @@ void GameScene::Initialize() {
 	mapChipField_ = new MapChipField;
 	mapChipField_ -> LoadMapChipCsv("Resources/blocks.csv");
 	GenerateBlocks();
+
 }
 	
 

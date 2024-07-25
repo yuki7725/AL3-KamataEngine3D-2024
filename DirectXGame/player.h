@@ -3,6 +3,7 @@
 #include "WorldTransform.h"
 #include "ViewProjection.h"
 #include "cassert"
+#include "Input.h"
 
 class Player {
 public: 
@@ -15,6 +16,7 @@ public:
 	void Update();
 
 	void Draw();
+
 
 private:
 
@@ -29,5 +31,9 @@ private:
 
 	//ビュープロジェクション
 	ViewProjection* viewProjection_ = nullptr;
+
+	static inline const float kAcceleration = 2.0f;
+
+	Vector3 velocity_ = {};
 
 };

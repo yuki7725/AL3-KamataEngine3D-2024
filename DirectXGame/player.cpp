@@ -29,6 +29,25 @@ void Player::Initialize(Model* model, ViewProjection* viewProjection, Vector3& p
 
 void Player::Update() {
 
+	//移動入力
+	//左右移動操作
+	Vector3 acceleration = {};
+	if (Input::GetInstance()->PushKey(DIK_RIGHT)) {
+		acceleration.x += kAcceleration;
+	} else if (Input::GetInstance()->PushKey(DIK_LEFT)) {
+		acceleration.x -= kAcceleration;
+	}
+
+	//加速と減速
+	velocity_.x += acceleration.x;
+	velocity_.y += acceleration.y;
+	velocity_.z += acceleration.z;
+
+	//移動
+	worldTransform_.translation_.x += velocity_.x;
+	worldTransform_.translation_.y += velocity_.y;
+	worldTransform_.translation_.z += velocity_.z;
+
 	//行列を更新して定数バッファに転送
 	worldTransform_.UpdateMatrix();
 }

@@ -33,6 +33,7 @@ private:
 	ViewProjection* viewProjection_ = nullptr;
 
 	static inline const float kAcceleration = 0.05f;
+	static inline const float kAttenuation = 0.05f;
 
 	Vector3 velocity_ = {};
 

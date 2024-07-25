@@ -36,6 +36,9 @@ void Player::Update() {
 		acceleration.x += kAcceleration;
 	} else if (Input::GetInstance()->PushKey(DIK_LEFT)) {
 		acceleration.x -= kAcceleration;
+	} else {
+		//移動減衰
+		velocity_.x *= (1.0f - kAttenuation);
 	}
 
 	//加速と減速

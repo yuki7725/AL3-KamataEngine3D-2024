@@ -41,6 +41,11 @@ void Player::Update() {
 		//向き変更
 		if (lrDirection_ != LRDirection::kRight) {
 			lrDirection_ = LRDirection::kRight;
+
+			//角度記録
+			turnFirstRotationY_ = worldTransform_.rotation_.y;
+			//タイマー
+			turnTimer_ = kTimeTurn;
 		}
 
 		acceleration.x += kAcceleration;
@@ -54,6 +59,11 @@ void Player::Update() {
 		//向き変更
 		if (lrDirection_ != LRDirection::kLeft) {
 			lrDirection_ = LRDirection::kLeft;
+
+			// 角度記録
+			turnFirstRotationY_ = worldTransform_.rotation_.y;
+			// タイマー
+			turnTimer_ = kTimeTurn;
 		}
 
 		acceleration.x -= kAcceleration;
@@ -65,26 +75,32 @@ void Player::Update() {
 
 	//加速と減速
 	velocity_.x += acceleration.x;
-	velocity_.y += acceleration.y;
-	velocity_.z += acceleration.z;
+	//velocity_.y += acceleration.y;
+	//velocity_.z += acceleration.z;
 
 	//移動
 	worldTransform_.translation_.x += velocity_.x;
-	worldTransform_.translation_.y += velocity_.y;
-	worldTransform_.translation_.z += velocity_.z;
+	//worldTransform_.translation_.y += velocity_.y;
+	//worldTransform_.translation_.z += velocity_.z;
 
 	//最大速度制限
 	velocity_.x = std::clamp(velocity_.x, -kLimitRunSpeed, kLimitRunSpeed);
 
 	//旋回制御
-	float destinationRotationYTable[] = {
-		std::numbers::pi_v<float> / 2.0f, 
-		std::numbers::pi_v<float> * 3.0f / 2.0f
-	};
-	//状態に応じた角度を取得
-	float destinationRotationY = destinationRotationYTable[static_cast<uint32_t>(lrDirection_)];
-	//自キャラの角度を設定
-	worldTransform_.rotation_.y = destinationRotationY;
+	if (turnTimer_ > 0.0f) {
+		turnTimer_ -= 1.0f / 60.0f;
+
+		float destinationRotationYTable[] = {
+			std::numbers::pi_v<float> / 2.0f, 
+			std::numbers::pi_v<float> * 3.0f / 2.0f
+		};
+
+		// 状態に応じた角度を取得
+		float destinationRotationY = destinationRotationYTable[static_cast<uint32_t>(lrDirection_)];
+		// 自キャラの角度を設定
+		float rate = 1 - turnTimer_ / kTimeTurn;
+		worldTransform_.rotation_.y = std::lerp(turnFirstRotationY_ ,destinationRotationY ,rate);
+	}
 
 	//行列を更新して定数バッファに転送
 	worldTransform_.UpdateMatrix();

@@ -24,6 +24,9 @@ public:
 	};
 	
 	LRDirection lrDirection_ = LRDirection::kRight;
+	
+	//接地状態フラグ
+	bool onGround_ = true;
 
 private:
 
@@ -53,6 +56,12 @@ private:
 	//旋回時間(秒)
 	static inline const float kTimeTurn = 0.3f;
 
-	//接地状態フラグ
+	//重力加速度(下)
+	static inline const float kGravityAcceleration = 2.0f;
+	//最大落下速度(下)
+	static inline const float kLimitFallSpeed = 2.0f;
+	//ジャンプ加速(上)
+	static inline const float kJumpAcceleration = 2.0f;
+	
 
 };

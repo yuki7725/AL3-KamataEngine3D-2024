@@ -1,5 +1,9 @@
 #include "CameraController.h"
 
-void CameraController::Initialize() {}
+void CameraController::Initialize() 
+{
+	//viewProjection_ = viewProjection;
+
+}
 
 void CameraController::Update() {}

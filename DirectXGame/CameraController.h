@@ -51,8 +51,11 @@ private:
 	Vector3 cameraMarkPos_{};
 
 	//座標補間割合
-	static inline const float kInterpolationRate = 2.0f;
+	static inline const float kInterpolationRate = 1.5f;
 
 	//速度掛け率
 	/*static inline const*/ float kVelocityBias = 3.0f;
+
+	//追従対象の各方向へのカメラ移動範囲
+	static inline const Rect margin = {0, 50, 0, 40};
 };

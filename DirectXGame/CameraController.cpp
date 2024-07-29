@@ -25,10 +25,10 @@ void CameraController::Update()
 	viewProjection_->translation_.y = std::lerp(viewProjection_->translation_.y, cameraMarkPos_.y, kInterpolationRate);
 
 	//移動範囲制限
-	viewProjection_->translation_.x = std::max(viewProjection_->translation_.x, movableArea_.left);
-	viewProjection_->translation_.x = std::min(viewProjection_->translation_.x, movableArea_.right);
-	viewProjection_->translation_.y = std::max(viewProjection_->translation_.y, movableArea_.bottom);
-	viewProjection_->translation_.y = std::min(viewProjection_->translation_.y, movableArea_.top);
+	viewProjection_->translation_.x = std::max(viewProjection_->translation_.x, margin.left);
+	viewProjection_->translation_.x = std::min(viewProjection_->translation_.x, margin.right);
+	viewProjection_->translation_.y = std::max(viewProjection_->translation_.y, margin.bottom);
+	viewProjection_->translation_.y = std::min(viewProjection_->translation_.y, margin.top);
 
 	//行列を更新する
 	viewProjection_->UpdateMatrix();

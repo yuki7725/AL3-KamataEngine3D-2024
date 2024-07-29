@@ -54,12 +54,12 @@ private:
 	float turnTimer_ = 0.0f;
 
 	//旋回時間(秒)
-	static inline const float kTimeTurn = 0.2f;
+	static inline const float kTimeTurn = 0.3f;
 
 	//重力加速度(下)
 	static inline const float kGravityAcceleration = 0.1f;
 	//最大落下速度(下)
-	static inline const float kLimitFallSpeed = 8.0f;
+	static inline const float kLimitFallSpeed = 7.0f;
 	//ジャンプ加速(上)
 	static inline const float kJumpAcceleration = 0.5f;
 	

@@ -107,7 +107,7 @@ void Player::Update() {
 
 	} else {
 			
-		velocity_ = Add(velocity_, Vector3(-kGravityAcceleration, 0));
+		velocity_ = Add(velocity_, Vector3(0, -kGravityAcceleration));
 
 		velocity_.y = std::max(velocity_.y, -1 * kLimitFallSpeed);
 

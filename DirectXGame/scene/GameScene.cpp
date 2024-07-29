@@ -60,6 +60,7 @@ void GameScene::Initialize() {
 	// デバッグカメラの生成
 	debugCamera_ = new DebugCamera(kWindowWidth, kWindowHeight);
 
+
 	// skyDomeの生成
 	skyDome_ = new skyDome();
 	// skyDomeの初期化

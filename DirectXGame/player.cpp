@@ -150,4 +150,14 @@ void Player::Update() {
 void Player::Draw() {
 	// 3Dモデルを描画
 	model_->Draw(worldTransform_, *viewProjection_);
+
+	/*WorldTransform& Player::GetWorldTransform()
+	{
+		return worldTransform;
+	}*/
+}
+
+WorldTransform& Player::GetWorldTransform() {
+	// TODO: return ステートメントをここに挿入します
+	return worldTransform_;
 }

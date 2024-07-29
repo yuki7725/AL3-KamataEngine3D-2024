@@ -11,6 +11,7 @@ GameScene::~GameScene() {
 	delete debugCamera_;
 	delete skyDome_;
 	delete mapChipField_;
+	delete cameraController_;
 
 	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
@@ -68,6 +69,9 @@ void GameScene::Initialize() {
 	mapChipField_ = new MapChipField;
 	mapChipField_ -> LoadMapChipCsv("Resources/blocks.csv");
 	GenerateBlocks();
+
+	//カメラコントローラ
+	cameraController_ = new CameraController;
 
 }
 	

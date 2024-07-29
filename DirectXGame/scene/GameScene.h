@@ -86,7 +86,7 @@ private: // メンバ変数
 	void GenerateBlocks();
 
 	//カメラコントローラ
-	CameraController* cameraController_ = nullptr;
+	CameraController* cameraController_=nullptr;
 
 	/// <summary>
 	/// ゲームシーン用

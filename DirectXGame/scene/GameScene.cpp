@@ -74,6 +74,12 @@ void GameScene::Initialize() {
 	//カメラコントローラ
 	cameraController_ = new CameraController;
 
+	//カメラコントローラの初期化
+	cameraController_->Initialize(&viewProjection_);
+	//追従対象をセット
+	cameraController_->SetTarget(player_);
+	//リセット
+	cameraController_->Reset();
 }
 	
 
@@ -112,6 +118,9 @@ void GameScene::Update() {
 
 	//skyDomeの処理
 	skyDome_->Update();
+
+	//カメラコントローラの更新
+	cameraController_->Update();
 }
 
 void GameScene::Draw() {

@@ -32,7 +32,7 @@ private:
 	Player* target_ = nullptr;
 
 	//追従対象とカメラの座標の差(オフセット)
-	Vector3 targetOffset_ = {0, 0, -15.0f};
+	Vector3 targetOffset_ = {0, 0, -30.0f};
 
 
 

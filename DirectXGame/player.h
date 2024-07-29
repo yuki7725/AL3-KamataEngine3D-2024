@@ -20,7 +20,7 @@ public:
 
 	WorldTransform& GetWorldTransform();
 
-	
+	const Vector3& GetVelocity() const { return velocity_; }
 
 private:
 

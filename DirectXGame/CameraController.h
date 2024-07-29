@@ -1,4 +1,3 @@
-
 #pragma once
 #include "ViewProjection.h"
 #include "player.h"
@@ -6,8 +5,7 @@
 #include "Input.h"
 #include <algorithm>
 #include "string.h"
-
-
+#include "clac.h"
 
 //前方宣言
 class Player;
@@ -48,4 +46,13 @@ private:
 
 	//カメラ移動範囲
 	Rect movableArea_ = {0, 100, 0, 100};
+
+	//カメラの目標座標
+	Vector3 cameraMarkPos_{};
+
+	//座標補間割合
+	static inline const float kInterpolationRate = 2.0f;
+
+	//速度掛け率
+	/*static inline const*/ float kVelocityBias = 3.0f;
 };

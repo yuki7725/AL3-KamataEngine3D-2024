@@ -6,6 +6,9 @@
 static Vector3 Add(const Vector3& v1, const Vector3& v2) { 
 	return Vector3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z); }
 
+static Vector3 Multiply(float& scalar, const Vector3& v){ 
+	return Vector3(scalar * v.x, scalar * v.y, scalar * v.z); }
+
 static Matrix4x4 Multiply(const Matrix4x4& m1, const Matrix4x4& m2) {
 	Matrix4x4 result = {};
 

@@ -76,6 +76,15 @@ void GameScene::Initialize() {
 
 	//カメラコントローラの初期化
 	cameraController_->Initialize(&viewProjection_);
+	
+	//移動範囲の指定
+	CameraController::Rect area;
+	area.left = 0.0f;
+	area.right = 50.0f;
+	area.top = 40.0f;
+	area.bottom = 0.0f;
+	cameraController_->SetMovableArea(area);
+	
 	//追従対象をセット
 	cameraController_->SetTarget(player_);
 	//リセット
@@ -91,9 +100,12 @@ void GameScene::Update() {
 	}
 #endif // _DEBUG
 
-
+//カメラコントローラの更新
+	cameraController_->Update();
 	//自キャラの更新
 	player_->Update();
+	
+	
 
 	//ブロックの更新
 	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
@@ -119,8 +131,7 @@ void GameScene::Update() {
 	//skyDomeの処理
 	skyDome_->Update();
 
-	//カメラコントローラの更新
-	cameraController_->Update();
+	
 }
 
 void GameScene::Draw() {

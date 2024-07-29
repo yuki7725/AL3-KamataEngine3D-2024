@@ -52,49 +52,6 @@ void GameScene::Initialize() {
 
 	modelBlock_ = new Model();
 
-	// 要素数
-	/*const uint32_t kNumBlockHorizontal = 20;
-	const uint32_t kNumBlockVertical = 10;*/
-	// 横幅
-	//const float kBlockWidth = 2.0f;
-	// 縦幅
-	//const float kBlockHeight = 2.0f;
-
-	
-
-	//// 要素数を変更する
-	//worldTransformBlocks_.resize(kNumBlockVertical);
-	//for (uint32_t i = 0; i < kNumBlockVertical; ++i) {
-	//	// 一列の要素数を設定
-	//	worldTransformBlocks_[i].resize(kNumBlockHorizontal);
-	//}
-
-	// ブロックのマップチップ
-	/*int map[kNumBlockVertical][kNumBlockHorizontal] = {
-	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
-	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
-	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
-	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
-	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-	    {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0},
-	    {0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
-	};*/
-
-	////キューブの生成
-	// for (uint32_t i = 0; i < kNumBlockHorizontal; ++i) {
-	//	for (uint32_t j = 0; j < kNumBlockVertical; ++j) {
-	//		if (map[j][i] == 1) {
-	//			worldTransformBlocks_[j][i] = new WorldTransform();
-	//			worldTransformBlocks_[j][i]->Initialize();
-	//			worldTransformBlocks_[j][i]->translation_.x = kBlockWidth * i;
-	//			worldTransformBlocks_[j][i]->translation_.y = kBlockHeight * j;
-	//		}
-	//	}
-	// }
-
 	// 画面縦幅
 	const int kWindowWidth = 1280;
 	const int kWindowHeight = 720;

@@ -30,6 +30,8 @@ void CameraController::Update()
 	viewProjection_->translation_.y = std::max(viewProjection_->translation_.y, margin.bottom);
 	viewProjection_->translation_.y = std::min(viewProjection_->translation_.y, margin.top);
 
+	
+
 	//行列を更新する
 	viewProjection_->UpdateMatrix();
 }
@@ -41,5 +43,7 @@ void CameraController::Reset()
 
 	//追従対象とオフセットからカメラの座標を計算
 	viewProjection_->translation_ = Add(targetWorldTransform.translation_, targetOffset_);
+viewProjection_->translation_.x = std::max(movableArea_.left, std::min(viewProjection_->translation_.x, movableArea_.right));
+	viewProjection_->translation_.y = std::max(movableArea_.bottom, std::min(viewProjection_->translation_.y, movableArea_.top));
 
 }

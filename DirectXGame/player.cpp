@@ -107,7 +107,7 @@ void Player::Update() {
 
 	} else {
 			
-		velocity_ = Add(velocity_, Vector3(0, -kGravityAcceleration));
+		velocity_ = Add(velocity_, Vector3(0, -kGravityAcceleration, 0));
 
 		velocity_.y = std::max(velocity_.y, -1 * kLimitFallSpeed);
 
@@ -143,6 +143,14 @@ void Player::Update() {
 
 	
 	worldTransform_.translation_ = Add(worldTransform_.translation_, velocity_);
+
+	if (worldTransform_.translation_.x > 30) {
+		worldTransform_.translation_.x = 30;
+	}
+	if (worldTransform_.translation_.x < 2) {
+		worldTransform_.translation_.x = 2;
+	}
+
 	//行列を更新して定数バッファに転送
 	worldTransform_.UpdateMatrix();
 }
@@ -158,6 +166,6 @@ void Player::Draw() {
 }
 
 WorldTransform& Player::GetWorldTransform() {
-	// TODO: return ステートメントをここに挿入します
+	// TODO: return ステートメントをここに挿入
 	return worldTransform_;
 }

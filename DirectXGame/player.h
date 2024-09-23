@@ -41,6 +41,12 @@ public:
 	//マップ衝突判定
 	void MapCollision(CollisionMapInfo& info);
 
+	//各方向の衝突判定
+	void MapCollisionTop(CollisionMapInfo& info);
+	/*void MapCollisionBottom(CollisionMapInfo& info);
+	void MapCollisionRight(CollisionMapInfo& info);
+	void MapCollisionLeft(CollisionMapInfo& info);*/
+
 private:
 
 	//ワールド変換データ

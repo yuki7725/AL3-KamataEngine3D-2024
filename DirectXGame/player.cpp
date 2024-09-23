@@ -193,3 +193,11 @@ void Player::Movement()
 /////////////////////////////////////////////////////
 
 void Player::MapCollision(CollisionMapInfo& info) {}
+
+void Player::MapCollisionTop(CollisionMapInfo& info) {}
+
+//void Player::MapCollisionBottom(CollisionMapInfo& info) {}
+//
+//void Player::MapCollisionRight(CollisionMapInfo& info) {}
+//
+//void Player::MapCollisionLeft(CollisionMapInfo& info) {}

@@ -49,57 +49,8 @@ void Player::Update() {
 			onGround_ = false;
 		}
 	 
-		//移動入力
-		//接地状態
-		if (Input::GetInstance()->PushKey(DIK_RIGHT) || Input::GetInstance()->PushKey(DIK_LEFT)) {
-
-			// 左右移動操作
-			Vector3 acceleration = {};
-			if (Input::GetInstance()->PushKey(DIK_RIGHT)) {
-				// 左移動中の右入力
-				if (velocity_.x < 0.0f) {
-					velocity_.x *= (1.0f - kAttenuation);
-				}
-
-				acceleration.x += kAcceleration;
-
-				// 向き変更
-				if (lrDirection_ != LRDirection::kRight) {
-					lrDirection_ = LRDirection::kRight;
-
-					// 角度記録
-					turnFirstRotationY_ = worldTransform_.rotation_.y;
-					// タイマー
-					turnTimer_ = kTimeTurn;
-				}
-
-			} else if (Input::GetInstance()->PushKey(DIK_LEFT)) {
-				// 右移動中の左入力
-				if (velocity_.x > 0.0f) {
-					velocity_.x *= (1.0f - kAttenuation);
-				}
-
-				acceleration.x -= kAcceleration;
-
-				// 向き変更
-				if (lrDirection_ != LRDirection::kLeft) {
-					lrDirection_ = LRDirection::kLeft;
-
-					// 角度記録
-					turnFirstRotationY_ = worldTransform_.rotation_.y;
-					// タイマー
-					turnTimer_ = kTimeTurn;
-				}
-			}
-
-			velocity_ = Add(velocity_, acceleration);
-			velocity_.x = std::clamp(velocity_.x, -kLimitRunSpeed, kLimitRunSpeed);
-
-		} else {
-				// 移動減衰
-				velocity_.x *= (1.0f - kAttenuation);
-		}
-
+		Movement();
+		
 		if (Input::GetInstance()->PushKey(DIK_UP)) {
 				// ジャンプ初速
 				velocity_ = Add(velocity_, {0.0f, kJumpAcceleration, 0.0f});
@@ -168,4 +119,60 @@ void Player::Draw() {
 WorldTransform& Player::GetWorldTransform() {
 	// TODO: return ステートメントをここに挿入
 	return worldTransform_;
+}
+
+void Player::Movement() 
+{
+
+	// kokokara[//移動入力
+	// 接地状態
+	if (Input::GetInstance()->PushKey(DIK_RIGHT) || Input::GetInstance()->PushKey(DIK_LEFT)) {
+
+		// 左右移動操作
+		Vector3 acceleration = {};
+		if (Input::GetInstance()->PushKey(DIK_RIGHT)) {
+			// 左移動中の右入力
+			if (velocity_.x < 0.0f) {
+				velocity_.x *= (1.0f - kAttenuation);
+			}
+
+			acceleration.x += kAcceleration;
+
+			// 向き変更
+			if (lrDirection_ != LRDirection::kRight) {
+				lrDirection_ = LRDirection::kRight;
+
+				// 角度記録
+				turnFirstRotationY_ = worldTransform_.rotation_.y;
+				// タイマー
+				turnTimer_ = kTimeTurn;
+			}
+
+		} else if (Input::GetInstance()->PushKey(DIK_LEFT)) {
+			// 右移動中の左入力
+			if (velocity_.x > 0.0f) {
+				velocity_.x *= (1.0f - kAttenuation);
+			}
+
+			acceleration.x -= kAcceleration;
+
+			// 向き変更
+			if (lrDirection_ != LRDirection::kLeft) {
+				lrDirection_ = LRDirection::kLeft;
+
+				// 角度記録
+				turnFirstRotationY_ = worldTransform_.rotation_.y;
+				// タイマー
+				turnTimer_ = kTimeTurn;
+			}
+		}
+
+		velocity_ = Add(velocity_, acceleration);
+		velocity_.x = std::clamp(velocity_.x, -kLimitRunSpeed, kLimitRunSpeed);
+
+	} else {
+		// 移動減衰
+		velocity_.x *= (1.0f - kAttenuation);
+	}
+	////
 }

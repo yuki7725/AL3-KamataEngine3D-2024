@@ -26,6 +26,8 @@ public:
 
 	void SetMapChipField(MapChipField* mapChipField) { mapChipField_ = mapChipField; }
 	
+	//動き
+	void Movement();
 
 private:
 

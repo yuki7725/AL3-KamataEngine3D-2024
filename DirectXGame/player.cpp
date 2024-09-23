@@ -194,7 +194,23 @@ void Player::Movement()
 
 void Player::MapCollision(CollisionMapInfo& info) {}
 
-void Player::MapCollisionTop(CollisionMapInfo& info) {}
+/////////////////////////////////////////////////////
+
+//マップ衝突判定上方向
+void Player::MapCollisionTop(CollisionMapInfo& info) 
+{
+	//移動後の四つの座標
+	std::array<Vector3, kNumCorner> positionsNew;
+
+	for (uint32_t i = 0; i < positionsNew.size(); ++i) {
+		positionsNew[i] = CornerPosition(Add(worldTransform_.translation_, info.movement), static_cast<Corner>(i));
+	}
+
+	//上昇ありか
+	if (info.movement.y <= 0) {
+		return;
+	}
+}
 
 
 //void Player::MapCollisionBottom(CollisionMapInfo& info) {}

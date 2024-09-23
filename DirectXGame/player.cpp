@@ -287,6 +287,22 @@ void Player::MapCollisionBottom(CollisionMapInfo& info)
 		hit = true;
 	}
 
+	//ブロックにヒットしたか
+	if (hit) {
+		Vector3 offset = {0.0f, kHeight / 2.0f, 0.0f};
+		//めり込みを排除する方向に移動量を設定
+		indexSet = mapChipField_->GetMapChipIndexSetByPosition(Subtract(Add(worldTransform_.translation_, info.movement), offset));
+		MapChipField::Rect rect = mapChipField_->GetRectByIndex(indexSet.xIndex, indexSet.yIndex);	
+		float movementY = (rect.top - worldTransform_.translation_.y) + (kHeight / 2.0f) + kBlank;
+
+		info.movement.y = std::min(0.0f, movementY);
+		info.isLanding = true;
+
+	} else {
+
+		info.isLanding = false;
+	}
+
 }
 
 //void Player::MapCollisionRight(CollisionMapInfo& info) {}

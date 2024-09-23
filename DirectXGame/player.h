@@ -62,6 +62,9 @@ public:
 	//判定結果を反映させて移動
 	void CollisionResult(CollisionMapInfo& info);
 
+	//天井に接触している場合の処理
+	void isCeilingCollision(CollisionMapInfo& info);
+
 private:
 
 	//ワールド変換データ

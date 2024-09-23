@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <numbers>
 #include <MapChipField.h>
+#include <DebugText.h>
 
 
 Player::Player(){};
@@ -274,4 +275,16 @@ void Player::CollisionResult(CollisionMapInfo& info)
 {
 	//移動
 	worldTransform_.translation_ = Add(worldTransform_.translation_, info.movement);
+}
+
+
+/////////////////////////////////////////////////////
+
+void Player::isCeilingCollision(CollisionMapInfo& info)
+{
+	//天井に当たったか
+	if (info.isCeiling) {
+		DebugText::GetInstance()->ConsolePrintf("hit ceiling\n");
+		velocity_.y = 0;
+	}
 }

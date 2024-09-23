@@ -102,7 +102,7 @@ void Player::Update() {
 	CollisionMapInfo collisionMapInfo;
 	//移動量に速度の値をコピー
 	collisionMapInfo.movement = velocity_;
-
+	
 	//マップ衝突チェック
 	MapCollision(collisionMapInfo);
 
@@ -139,7 +139,7 @@ WorldTransform& Player::GetWorldTransform() {
 void Player::Movement() 
 {
 
-	// kokokara[//移動入力
+	//移動入力
 	// 接地状態
 	if (Input::GetInstance()->PushKey(DIK_RIGHT) || Input::GetInstance()->PushKey(DIK_LEFT)) {
 
@@ -194,7 +194,7 @@ void Player::Movement()
 
 /////////////////////////////////////////////////////
 
-void Player::MapCollision(CollisionMapInfo& info) {}
+void Player::MapCollision(CollisionMapInfo& info) { MapCollisionTop(info); }
 
 /////////////////////////////////////////////////////
 
@@ -214,11 +214,14 @@ void Player::MapCollisionTop(CollisionMapInfo& info)
 	}
 
 	MapChipType mapChipType;
+
 	//真上の当たり判定
 	bool hit = false;
 
-	//左上点の判定
 	MapChipField::IndexSet indexSet;
+	
+	//左上点の判定
+	
 	indexSet = mapChipField_->GetMapChipIndexSetByPosition(positionsNew[kLeftTop]);
 	mapChipType = mapChipField_->GetMapChipTypeByIndex(indexSet.xIndex, indexSet.yIndex);
 	if (mapChipType == MapChipType::kBlock) {
@@ -226,7 +229,6 @@ void Player::MapCollisionTop(CollisionMapInfo& info)
 	}
 
 	//右上点の判定
-	MapChipField::IndexSet indexSet;
 	indexSet = mapChipField_->GetMapChipIndexSetByPosition(positionsNew[kRightTop]);
 	mapChipType = mapChipField_->GetMapChipTypeByIndex(indexSet.xIndex, indexSet.yIndex);
 	if (mapChipType == MapChipType::kBlock) {
@@ -245,6 +247,7 @@ void Player::MapCollisionTop(CollisionMapInfo& info)
 	}
 
 	CollisionResult(info);
+	isCeilingCollision(info);
 }
 
 

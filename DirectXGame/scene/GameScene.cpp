@@ -50,7 +50,7 @@ void GameScene::Initialize() {
 	
 
 	///////////////////////////////////////////////////
-	
+
 	// 自キャラの生成
 	player_ = new Player();
 

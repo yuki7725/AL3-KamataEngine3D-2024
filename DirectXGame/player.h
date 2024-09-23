@@ -59,6 +59,9 @@ public:
 
 	Vector3 CornerPosition(const Vector3& center, Corner corner);
 
+	//判定結果を反映させて移動
+	void CollisionResult(CollisionMapInfo& info);
+
 private:
 
 	//ワールド変換データ

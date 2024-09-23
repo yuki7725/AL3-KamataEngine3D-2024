@@ -242,6 +242,8 @@ void Player::MapCollisionTop(CollisionMapInfo& info)
 		//天井に当たった事を確認する
 		info.isCeiling = true;
 	}
+
+	CollisionResult(info);
 }
 
 
@@ -263,4 +265,13 @@ Vector3 Player::CornerPosition(const Vector3& center, Corner corner)
         {-kWidth / 2.0f, -kHeight / 2.0f, 0}
     };
 	return Add(center, offsetTable[static_cast<uint32_t>(corner)]);
+}
+
+
+/////////////////////////////////////////////////////
+
+void Player::CollisionResult(CollisionMapInfo& info) 
+{
+	//移動
+	worldTransform_.translation_ = Add(worldTransform_.translation_, info.movement);
 }

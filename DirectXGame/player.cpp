@@ -287,7 +287,6 @@ void Player::isCeilingCollision(CollisionMapInfo& info)
 {
 	//天井に当たったか
 	if (info.isCeiling) {
-		DebugText::GetInstance()->ConsolePrintf("hit ceiling\n");
 		velocity_.y = 0;
 	}
 }

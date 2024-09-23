@@ -250,9 +250,17 @@ void Player::MapCollisionTop(CollisionMapInfo& info)
 	isCeilingCollision(info);
 }
 
+/////////////////////////////////////////////////////
 
-//void Player::MapCollisionBottom(CollisionMapInfo& info) {}
-//
+void Player::MapCollisionBottom(CollisionMapInfo& info) 
+{
+	//下降ありか
+	if (info.movement.y >= 0) {
+		return;
+	}
+
+}
+
 //void Player::MapCollisionRight(CollisionMapInfo& info) {}
 //
 //void Player::MapCollisionLeft(CollisionMapInfo& info) {}

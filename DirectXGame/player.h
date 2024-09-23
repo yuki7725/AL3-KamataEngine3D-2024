@@ -43,9 +43,9 @@ public:
 
 	//各方向の衝突判定
 	void MapCollisionTop(CollisionMapInfo& info);
-	/*void MapCollisionBottom(CollisionMapInfo& info);
-	void MapCollisionRight(CollisionMapInfo& info);
-	void MapCollisionLeft(CollisionMapInfo& info);*/
+	void MapCollisionBottom(CollisionMapInfo& info);
+	//void MapCollisionRight(CollisionMapInfo& info);
+	//void MapCollisionLeft(CollisionMapInfo& info);
 
 	//角
 	enum Corner { 

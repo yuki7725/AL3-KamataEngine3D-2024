@@ -28,6 +28,13 @@ public:
 		uint32_t yIndex;
 	};
 
+	struct Rect {
+		float left;
+		float right;
+		float bottom;
+		float top;
+	};
+
 	void ResetMapChipData();
 
 	void LoadMapChipCsv(const std::string& filePath);

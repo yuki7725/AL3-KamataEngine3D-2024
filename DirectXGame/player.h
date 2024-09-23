@@ -6,6 +6,7 @@
 #include "Input.h"
 #include <algorithm>
 
+//マップとの当たり判定
 struct CollisionMapInfo {
 	bool isCeiling = false;
 	bool isLanding = false;
@@ -36,6 +37,9 @@ public:
 	
 	//動き
 	void Movement();
+
+	//マップ衝突判定
+	void MapCollision(CollisionMapInfo& info);
 
 private:
 

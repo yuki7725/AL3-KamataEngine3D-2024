@@ -28,6 +28,8 @@ void Player::Initialize(Model* model, ViewProjection* viewProjection, Vector3& p
 	viewProjection_ = viewProjection;
 }
 
+///////////////////////////////////////////////////////////
+
 void Player::Update() {
 	//着地フラグ
 	bool landing = false;
@@ -93,7 +95,18 @@ void Player::Update() {
 	}
 
 	
+	//衝突
+	//衝突情報を初期化
+	CollisionMapInfo collisionMapInfo;
+	//移動量に速度の値をコピー
+	collisionMapInfo.movement = velocity_;
+
+	//マップ衝突チェック
+	MapCollision(collisionMapInfo);
+
 	worldTransform_.translation_ = Add(worldTransform_.translation_, velocity_);
+
+
 
 	if (worldTransform_.translation_.x > 30) {
 		worldTransform_.translation_.x = 30;
@@ -176,3 +189,7 @@ void Player::Movement()
 	}
 	////
 }
+
+/////////////////////////////////////////////////////
+
+void Player::MapCollision(CollisionMapInfo& info) {}

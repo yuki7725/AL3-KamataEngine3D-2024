@@ -355,7 +355,16 @@ void Player::isLandingCollision(CollisionMapInfo& info)
 	if (onGround_) {
 
 		//接地状態の処理
-	
+		//ジャンプ開始
+		if (velocity_.y > 0.0f) {
+			onGround_ = false;
+		} else {
+		
+			//落下判定
+
+			//落下なら空中状態に切り替える
+		}
+
 	} else {
 		
 		//空中状態の処理

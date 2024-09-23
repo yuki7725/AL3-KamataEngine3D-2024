@@ -351,6 +351,9 @@ void Player::isCeilingCollision(CollisionMapInfo& info)
 
 void Player::isLandingCollision(CollisionMapInfo& info) 
 {
+	velocity_ = Add(velocity_, {0.0f, -kGravityAcceleration, 0.0f});
+	velocity_.y = std::max(velocity_.y, -kLimitFallSpeed);
+
 	//自キャラが接地状態か
 	if (onGround_) {
 
@@ -358,11 +361,47 @@ void Player::isLandingCollision(CollisionMapInfo& info)
 		//ジャンプ開始
 		if (velocity_.y > 0.0f) {
 			onGround_ = false;
-		} else {
-		
-			//落下判定
 
-			//落下なら空中状態に切り替える
+		} else {
+
+			//const float kSmallOffset = 0.01f;
+
+			//落下判定
+			std::array<Vector3, kNumCorner> positionsNew;
+
+			for (uint32_t i = 0; i < positionsNew.size(); ++i) {
+				positionsNew[i] = CornerPosition(Add(worldTransform_.translation_, info.movement), static_cast<Corner>(i));
+			}
+
+			if (info.movement.y <= 0) {
+				return;
+			}
+			
+			MapChipType mapChipType;
+
+			//真下の当たり判定
+			bool hit = false;
+
+			MapChipField::IndexSet indexSet;
+			
+	// 左下点の判定
+			indexSet = mapChipField_->GetMapChipIndexSetByPosition(positionsNew[kLeftBottom]);
+			mapChipType = mapChipField_->GetMapChipTypeByIndex(indexSet.xIndex, indexSet.yIndex);
+			if (mapChipType == MapChipType::kBlock) {
+				hit = true;
+			}
+
+			// 右下点の判定
+			indexSet = mapChipField_->GetMapChipIndexSetByPosition(positionsNew[kRightBottom]);
+			mapChipType = mapChipField_->GetMapChipTypeByIndex(indexSet.xIndex, indexSet.yIndex);
+			if (mapChipType == MapChipType::kBlock) {
+				hit = true;
+			}
+
+			if (!hit) {
+				// 落下なら空中状態に切り替える
+				onGround_ = false;
+			}
 		}
 
 	} else {

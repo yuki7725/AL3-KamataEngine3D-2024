@@ -359,6 +359,15 @@ void Player::isLandingCollision(CollisionMapInfo& info)
 	} else {
 		
 		//空中状態の処理
+		//着地フラグ
+		if (info.isLanding) {
 
+			//接地状態に切り替える
+			onGround_ = true;
+			//着地時にx速度を減衰
+			velocity_.x *= (1.0f - kAttenuationLanding);
+			//y速度を0にする
+			velocity_.y = 0.0f;
+		}
 	}
 }

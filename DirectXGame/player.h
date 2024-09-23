@@ -122,4 +122,7 @@ private:
 	static inline const float kHeight = 0.8f;
 
 	static inline const float kBlank = 0.2f;
+
+	//着地時の速度減衰率
+	static inline const float kAttenuationLanding = 0.5f;
 };

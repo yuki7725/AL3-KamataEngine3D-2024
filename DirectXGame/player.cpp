@@ -196,8 +196,23 @@ void Player::MapCollision(CollisionMapInfo& info) {}
 
 void Player::MapCollisionTop(CollisionMapInfo& info) {}
 
+
 //void Player::MapCollisionBottom(CollisionMapInfo& info) {}
 //
 //void Player::MapCollisionRight(CollisionMapInfo& info) {}
 //
 //void Player::MapCollisionLeft(CollisionMapInfo& info) {}
+
+/////////////////////////////////////////////////////
+
+
+Vector3 Player::CornerPosition(const Vector3& center, Corner corner) 
+{ 
+	Vector3 offsetTable[kNumCorner] = {
+	    {+kWidth / 2.0f, -kHeight / 2.0f, 0},
+        {-kWidth / 2.0f, -kHeight / 2.0f, 0},
+        {+kWidth / 2.0f, +kHeight / 2.0f, 0},
+        {-kWidth / 2.0f, -kHeight / 2.0f, 0}
+    };
+	return Add(center, offsetTable[static_cast<uint32_t>(corner)]);
+}

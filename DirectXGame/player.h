@@ -57,6 +57,8 @@ public:
 		kNumCorner //要素数
 	};
 
+	Vector3 CornerPosition(const Vector3& center, Corner corner);
+
 private:
 
 	//ワールド変換データ

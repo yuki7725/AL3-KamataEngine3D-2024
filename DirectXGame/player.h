@@ -8,10 +8,10 @@
 
 //マップとの当たり判定
 struct CollisionMapInfo {
-	bool isCeiling = false;
+	bool isCeiling = false; //天井
 	bool isLanding = false;
-	bool isWall = false;
-	Vector3 movement;
+	bool isWall = false; //壁
+	Vector3 movement; //移動量
 };
 
 class MapChipField;
@@ -111,4 +111,6 @@ private:
 	//キャラクターの当たり判定サイズ
 	static inline const float kWidth = 0.8f;
 	static inline const float kHeight = 0.8f;
+
+	static inline const float kBlank = 0.2f;
 };

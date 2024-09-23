@@ -231,6 +231,17 @@ void Player::MapCollisionTop(CollisionMapInfo& info)
 	if (mapChipType == MapChipType::kBlock) {
 		hit = true;
 	}
+
+	//ヒットしたか
+	if (hit) {
+		//めり込みを排除する方向に移動量を設定
+		indexSet = mapChipField_->GetMapChipIndexSetByPosition(Add(worldTransform_.translation_, info.movement));
+		//めり込み先ブロックの範囲矩形
+		MapChipField::Rect rect = mapChipField_->GetRectByIndex(indexSet.xIndex, indexSet.yIndex);
+		info.movement.y = std::max(0.0f, info.movement.y);
+		//天井に当たった事を確認する
+		info.isCeiling = true;
+	}
 }
 
 

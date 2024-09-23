@@ -6,7 +6,15 @@
 #include "Input.h"
 #include <algorithm>
 
+struct CollisionMapInfo {
+	bool isCeiling = false;
+	bool isLanding = false;
+	bool isWall = false;
+	Vector3 movement;
+};
+
 class MapChipField;
+
 
 class Player {
 public: 

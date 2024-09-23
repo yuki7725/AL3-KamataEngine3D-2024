@@ -346,3 +346,19 @@ void Player::isCeilingCollision(CollisionMapInfo& info)
 		velocity_.y = 0;
 	}
 }
+
+/////////////////////////////////////////////////////
+
+void Player::isLandingCollision(CollisionMapInfo& info) 
+{
+	//自キャラが接地状態か
+	if (onGround_) {
+
+		//接地状態の処理
+	
+	} else {
+		
+		//空中状態の処理
+
+	}
+}

@@ -65,6 +65,9 @@ public:
 	//天井に接触している場合の処理
 	void isCeilingCollision(CollisionMapInfo& info);
 
+	//地面に接触している時の処理(接地状態の切り替え処理)
+	void isLandingCollision(CollisionMapInfo& info);
+
 private:
 
 	//ワールド変換データ

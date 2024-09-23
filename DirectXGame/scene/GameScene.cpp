@@ -42,6 +42,15 @@ void GameScene::Initialize() {
 	viewProjection_.farZ = 5000;
 	viewProjection_.Initialize();
 
+	///////////////////////////////////////////////////
+	
+	//マップチップフィールドの生成と初期化
+	mapChipField_ = new MapChipField;
+	mapChipField_ -> LoadMapChipCsv("Resources/blocks.csv");
+	
+
+	///////////////////////////////////////////////////
+	
 	// 自キャラの生成
 	player_ = new Player();
 
@@ -51,7 +60,15 @@ void GameScene::Initialize() {
 	// 自キャラの初期化
 	player_->Initialize(modelPlayer_, &viewProjection_,playerPosition);
 
+	player_->SetMapChipField(mapChipField_);
+	
+	GenerateBlocks();
+
+	//////////////////////////////////////////////////
+
 	modelBlock_ = new Model();
+
+	//////////////////////////////////////////////////
 
 	// 画面縦幅
 	const int kWindowWidth = 1280;
@@ -60,16 +77,17 @@ void GameScene::Initialize() {
 	// デバッグカメラの生成
 	debugCamera_ = new DebugCamera(kWindowWidth, kWindowHeight);
 
+	//////////////////////////////////////////////////
+
 
 	// skyDomeの生成
 	skyDome_ = new skyDome();
 	// skyDomeの初期化
 	skyDome_->Initialize(modelSkyDome_, &viewProjection_);
 
+	//////////////////////////////////
+
 	
-	mapChipField_ = new MapChipField;
-	mapChipField_ -> LoadMapChipCsv("Resources/blocks.csv");
-	GenerateBlocks();
 
 	//カメラコントローラ
 	cameraController_ = new CameraController;

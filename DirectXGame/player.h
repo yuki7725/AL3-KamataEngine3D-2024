@@ -6,6 +6,8 @@
 #include "Input.h"
 #include <algorithm>
 
+class MapChipField;
+
 class Player {
 public: 
 
@@ -21,6 +23,9 @@ public:
 	WorldTransform& GetWorldTransform();
 
 	const Vector3& GetVelocity() const { return velocity_; }
+
+	void SetMapChipField(MapChipField* mapChipField) { mapChipField_ = mapChipField; }
+	
 
 private:
 
@@ -67,4 +72,7 @@ private:
 	
 	//接地状態フラグ
 	bool onGround_ = true;
+
+	//マップチップフィールド
+	MapChipField* mapChipField_ = nullptr;
 };

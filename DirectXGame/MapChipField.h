@@ -58,6 +58,8 @@ public:
 
 	IndexSet GetMapChipIndexSetByPosition(const Vector3& position);
 
+	Rect GetRectByIndex(uint32_t xIndex, uint32_t yIndex);
+
 private:
 };
 

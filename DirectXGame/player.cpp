@@ -3,6 +3,7 @@
 #include "player.h"
 #include <assert.h>
 #include <numbers>
+#include <MapChipField.h>
 
 
 Player::Player(){};
@@ -209,6 +210,26 @@ void Player::MapCollisionTop(CollisionMapInfo& info)
 	//上昇ありか
 	if (info.movement.y <= 0) {
 		return;
+	}
+
+	MapChipType mapChipType;
+	//真上の当たり判定
+	bool hit = false;
+
+	//左上点の判定
+	MapChipField::IndexSet indexSet;
+	indexSet = mapChipField_->GetMapChipIndexSetByPosition(positionsNew[kLeftTop]);
+	mapChipType = mapChipField_->GetMapChipTypeByIndex(indexSet.xIndex, indexSet.yIndex);
+	if (mapChipType == MapChipType::kBlock) {
+		hit = true;
+	}
+
+	//右上点の判定
+	MapChipField::IndexSet indexSet;
+	indexSet = mapChipField_->GetMapChipIndexSetByPosition(positionsNew[kRightTop]);
+	mapChipType = mapChipField_->GetMapChipTypeByIndex(indexSet.xIndex, indexSet.yIndex);
+	if (mapChipType == MapChipType::kBlock) {
+		hit = true;
 	}
 }
 

@@ -51,7 +51,7 @@ public:
 	enum Corner { 
 		kRightBottom, //右下
 		kLeftBottom, //左下
-		kRighttop, //右上
+		kRightTop, //右上
 		kLeftTop, //左上
 
 		kNumCorner //要素数

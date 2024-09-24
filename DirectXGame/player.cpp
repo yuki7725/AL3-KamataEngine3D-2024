@@ -364,7 +364,7 @@ void Player::isLandingCollision(CollisionMapInfo& info)
 
 		} else {
 
-			//const float kSmallOffset = 0.01f;
+			const float kSmallOffset = 0.02f;
 
 			//落下判定
 			std::array<Vector3, kNumCorner> positionsNew;
@@ -385,14 +385,14 @@ void Player::isLandingCollision(CollisionMapInfo& info)
 			MapChipField::IndexSet indexSet;
 			
 	// 左下点の判定
-			indexSet = mapChipField_->GetMapChipIndexSetByPosition(positionsNew[kLeftBottom]);
+			indexSet = mapChipField_->GetMapChipIndexSetByPosition(Add(positionsNew[kLeftBottom],Vector3(0,kSmallOffset,0)));
 			mapChipType = mapChipField_->GetMapChipTypeByIndex(indexSet.xIndex, indexSet.yIndex);
 			if (mapChipType == MapChipType::kBlock) {
 				hit = true;
 			}
 
 			// 右下点の判定
-			indexSet = mapChipField_->GetMapChipIndexSetByPosition(positionsNew[kRightBottom]);
+			indexSet = mapChipField_->GetMapChipIndexSetByPosition(Add(positionsNew[kRightBottom],Vector3(0,kSmallOffset,0)));
 			mapChipType = mapChipField_->GetMapChipTypeByIndex(indexSet.xIndex, indexSet.yIndex);
 			if (mapChipType == MapChipType::kBlock) {
 				hit = true;

@@ -130,5 +130,5 @@ private:
 	static inline const float kAttenuationLanding = 0.1f;
 
 	//壁にぶつかった時の速度減衰
-	static inline const float kAttenuationWall = 0.5f;
+	static inline const float kAttenuationWall = 0.09f;
 };

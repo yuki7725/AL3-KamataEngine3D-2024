@@ -26,12 +26,16 @@ void Enemy::Initialize(Model* model, ViewProjection* viewProjection, Vector3& po
 
 	// 引数の内容をメンバ変数に記録
 	viewProjection_ = viewProjection;
+
+	//速度を設定
+	velocity_ = {-kWalkSpeed, 0, 0};
 }
 
 void Enemy::Update() 
 {
-//
-	// worldTransform_.translation_ = Add(worldTransform_.translation_,)
+	//移動
+	worldTransform_.translation_ = Add(worldTransform_.translation_, velocity_);
+
 	// 行列を更新して定数バッファに転送
 	worldTransform_.UpdateMatrix();
 }

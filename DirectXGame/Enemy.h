@@ -36,4 +36,9 @@ private:
 	// テクスチャハンドル
 	uint32_t textureHandle_ = 0u;
 
+	//歩行の速さ
+	static inline const float kWalkSpeed = 0.03f;
+
+	//速度
+	Vector3 velocity_ = {};
 };

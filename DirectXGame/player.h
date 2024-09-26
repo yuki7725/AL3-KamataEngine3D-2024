@@ -10,7 +10,7 @@
 struct CollisionMapInfo {
 	bool isCeiling = false; //天井
 	bool isLanding = false;
-	bool isWall = false; //壁
+	bool hitWall = false; //壁
 	Vector3 movement; //移動量
 };
 
@@ -44,8 +44,8 @@ public:
 	//各方向の衝突判定
 	void MapCollisionTop(CollisionMapInfo& info);
 	void MapCollisionBottom(CollisionMapInfo& info);
-	//void MapCollisionRight(CollisionMapInfo& info);
-	//void MapCollisionLeft(CollisionMapInfo& info);
+	void MapCollisionRight(CollisionMapInfo& info);
+	void MapCollisionLeft(CollisionMapInfo& info);
 
 	//角
 	enum Corner { 

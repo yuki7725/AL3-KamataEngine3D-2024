@@ -84,9 +84,9 @@ private:
 	//テクスチャハンドル
 	uint32_t textureHandle_ = 0u;
 
-	static inline const float kAcceleration = 0.1f;
-	static inline const float kAttenuation = 0.1f;
-	static inline const float kLimitRunSpeed = 1.0f;
+	static inline const float kAcceleration = 0.09f;
+	static inline const float kAttenuation = 0.08f;
+	static inline const float kLimitRunSpeed = 0.3f;
 
 	enum class LRDirection {
 			kRight,
@@ -102,14 +102,14 @@ private:
 	float turnTimer_ = 0.0f;
 
 	//旋回時間(秒)
-	static inline const float kTimeTurn = 0.3f;
+	static inline const float kTimeTurn = 0.1f;
 
 	//重力加速度(下)
-	static inline const float kGravityAcceleration = 0.1f;
+	static inline const float kGravityAcceleration = 0.01f;
 	//最大落下速度(下)
-	static inline const float kLimitFallSpeed = 7.0f;
+	static inline const float kLimitFallSpeed = 0.3f;
 	//ジャンプ加速(上)
-	static inline const float kJumpAcceleration = 0.5f;
+	static inline const float kJumpAcceleration = 0.4f;
 	
 	//接地状態フラグ
 	bool onGround_ = true;
@@ -118,11 +118,11 @@ private:
 	MapChipField* mapChipField_ = nullptr;
 
 	//キャラクターの当たり判定サイズ
-	static inline const float kWidth = 0.8f;
-	static inline const float kHeight = 0.8f;
+	static inline const float kWidth = 1.8f;
+	static inline const float kHeight = 1.8f;
 
-	static inline const float kBlank = 0.2f;
+	static inline const float kBlank = 0.01f;
 
 	//着地時の速度減衰率
-	static inline const float kAttenuationLanding = 0.5f;
+	static inline const float kAttenuationLanding = 0.1f;
 };

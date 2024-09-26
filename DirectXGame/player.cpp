@@ -51,6 +51,7 @@ void Player::Update() {
 	CollisionResult(collisionMapInfo);
 	isCeilingCollision(collisionMapInfo);
 	isLandingCollision(collisionMapInfo);
+	isWallCollision(collisionMapInfo);
 
 
 
@@ -561,5 +562,13 @@ void Player::isLandingCollision(CollisionMapInfo& info)
 			//y速度を0にする
 			velocity_.y = 0.0f;
 		}
+	}
+}
+
+void Player::isWallCollision(CollisionMapInfo& info) 
+{
+	//壁接触による減速
+	if (info.hitWall) {
+		velocity_.x *= (1.0f - kAttenuationWall);
 	}
 }

@@ -68,6 +68,9 @@ public:
 	//地面に接触している時の処理(接地状態の切り替え処理)
 	void isLandingCollision(CollisionMapInfo& info);
 
+	//壁に接触している場合の処理
+	void isWallCollision(CollisionMapInfo& info);
+
 private:
 
 	//ワールド変換データ
@@ -125,4 +128,7 @@ private:
 
 	//着地時の速度減衰率
 	static inline const float kAttenuationLanding = 0.1f;
+
+	//壁にぶつかった時の速度減衰
+	static inline const float kAttenuationWall = 0.5f;
 };

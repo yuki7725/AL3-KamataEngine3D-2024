@@ -16,13 +16,23 @@ public:
 	~Enemy();
 
 	void Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position);
+	
 	void Update();
-	void Graw();
+	
+	void Draw();
 
 private:
 
+	// ワールド変換データ
 	WorldTransform worldTransform_;
+
+	// ビュープロジェクション
 	ViewProjection* viewProjection_ = nullptr;
+
+	// モデル
 	Model* model_ = nullptr;
+
+	// テクスチャハンドル
+	uint32_t textureHandle_ = 0u;
 
 };

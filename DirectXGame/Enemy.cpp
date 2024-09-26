@@ -26,6 +26,16 @@ void Enemy::Initialize(Model* model, ViewProjection* viewProjection, const Vecto
 	viewProjection_ = viewProjection;
 }
 
-void Enemy::Update() {}
+void Enemy::Update() 
+{
+//
+	
+	// 行列を更新して定数バッファに転送
+	worldTransform_.UpdateMatrix();
+}
 
-void Enemy::Graw() {}
+void Enemy::Draw() 
+{
+	// 3Dモデルを描画
+	model_->Draw(worldTransform_, *viewProjection_);
+}

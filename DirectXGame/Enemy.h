@@ -15,7 +15,7 @@ public:
 	Enemy();
 	~Enemy();
 
-	void Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position);
+	void Initialize(Model* model, ViewProjection* viewProjection,  Vector3& position);
 	
 	void Update();
 	
@@ -25,6 +25,7 @@ private:
 
 	// ワールド変換データ
 	WorldTransform worldTransform_;
+
 
 	// ビュープロジェクション
 	ViewProjection* viewProjection_ = nullptr;

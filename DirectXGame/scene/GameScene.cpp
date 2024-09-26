@@ -7,11 +7,13 @@ GameScene::GameScene() {}
 GameScene::~GameScene() {
 	delete model_;
 	delete player_;
+	delete enemy_;
 	delete modelBlock_;
 	delete debugCamera_;
 	delete skyDome_;
 	delete mapChipField_;
 	delete cameraController_;
+	delete modelEnemy_;
 
 	for (std::vector<WorldTransform*>& worldTransferBlockLine : worldTransformBlocks_) {
 		for (WorldTransform* worldTransformBlock : worldTransferBlockLine) {
@@ -31,6 +33,7 @@ void GameScene::Initialize() {
 	textureHandle_ = TextureManager::Load("cube/cube.jpg");
 	modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
 	modelPlayer_ = Model::CreateFromOBJ("player",true);
+	modelEnemy_ = Model::CreateFromOBJ("player",true);
 
 	// 3Dモデルの生成
 	model_ = Model::Create();
@@ -61,11 +64,23 @@ void GameScene::Initialize() {
 	player_->Initialize(modelPlayer_, &viewProjection_,playerPosition);
 
 	player_->SetMapChipField(mapChipField_);
-	
 	GenerateBlocks();
+	//////////////////////////////////////////////////
+
+	//敵の生成
+	enemy_ = new Enemy();
+
+	// 座標をマップチップ番号で指定
+	Vector3 enemyPosition = mapChipField_->GetMapChipPositionByIndex(10, 18);
+
+	// 自キャラの初期化
+	enemy_->Initialize(modelEnemy_, &viewProjection_,enemyPosition);
+
+	//enemy_->SetMapChipField(mapChipField_);
 
 	//////////////////////////////////////////////////
 
+	
 	modelBlock_ = new Model();
 
 	//////////////////////////////////////////////////
@@ -122,7 +137,8 @@ void GameScene::Update() {
 	cameraController_->Update();
 	//自キャラの更新
 	player_->Update();
-	
+	//敵の更新
+	enemy_->Update();
 	
 
 	//ブロックの更新
@@ -182,11 +198,20 @@ void GameScene::Draw() {
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
 	
+	
+	
+	
 	//自キャラの描画
 	player_->Draw();
+	
+	//敵の描画
+	if (enemy_ != nullptr) {
+		enemy_->Draw();
+	}
 
 	// モデルを連動
 	modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
+
 	
 	//skyDomeの描画
 	skyDome_->Draw();

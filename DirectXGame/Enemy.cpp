@@ -4,20 +4,22 @@
 #include <MapChipField.h>
 #include <DebugText.h>
 
-Enemy::Enemy() {}
+Enemy::Enemy(){};
 
 Enemy::~Enemy() {}
 
 
 
-void Enemy::Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position) 
+void Enemy::Initialize(Model* model, ViewProjection* viewProjection, Vector3& position) 
 {
 	//nullポインタチェック
 	assert(model);
+	model_ = model;
 
 	// ワールド変換の初期化
 	worldTransform_.Initialize();
-	worldTransform_.translation_;
+	worldTransform_.translation_ = position;
+
 
 	// 初期回転
 	worldTransform_.rotation_.y = std::numbers::pi_v<float> * 3.0f / 2.0f;
@@ -29,7 +31,7 @@ void Enemy::Initialize(Model* model, ViewProjection* viewProjection, const Vecto
 void Enemy::Update() 
 {
 //
-	
+	// worldTransform_.translation_ = Add(worldTransform_.translation_,)
 	// 行列を更新して定数バッファに転送
 	worldTransform_.UpdateMatrix();
 }

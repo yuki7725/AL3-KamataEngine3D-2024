@@ -13,6 +13,7 @@
 #include "skydome.h"
 #include "MapChipField.h"
 #include "CameraController.h"
+#include "Enemy.h"
 
 /// <summary>
 /// ゲームシーン
@@ -60,7 +61,8 @@ private: // メンバ変数
 	Model* modelSkyDome_ = nullptr;//天球
 
 	Model* modelPlayer_ = nullptr;
-	
+	Model* modelEnemy_ = nullptr;
+
 	// ワールドトランスフォーム
 	WorldTransform worldTransform_;
 
@@ -71,6 +73,10 @@ private: // メンバ変数
 
 	// 自キャラ
 	Player* player_ = nullptr;
+	
+	//敵
+	Enemy* enemy_ = nullptr;
+	
 
 	Model* modelBlock_ = nullptr;
 
@@ -87,6 +93,8 @@ private: // メンバ変数
 
 	//カメラコントローラ
 	CameraController* cameraController_=nullptr;
+	
+	
 
 	/// <summary>
 	/// ゲームシーン用

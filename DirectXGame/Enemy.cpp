@@ -29,12 +29,18 @@ void Enemy::Initialize(Model* model, ViewProjection* viewProjection, Vector3& po
 
 	//速度を設定
 	velocity_ = {-kWalkSpeed, 0, 0};
+
+	//タイマー初期化
+	walkTimer_ = 0.0f;
 }
 
 void Enemy::Update() 
 {
 	//移動
 	worldTransform_.translation_ = Add(worldTransform_.translation_, velocity_);
+
+	//タイマーを加算
+	walkTimer_ += 1.0f / 60.0f;
 
 	// 行列を更新して定数バッファに転送
 	worldTransform_.UpdateMatrix();

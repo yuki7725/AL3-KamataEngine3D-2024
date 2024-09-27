@@ -77,7 +77,7 @@ private: // メンバ変数
 	//敵
 	//Enemy* enemy_ = nullptr;
 	std::list<Enemy*> enemies_;
-	static inline const uint32_t enemyMapCount = 2;
+	static inline const uint32_t enemyMapCount = 3;
 
 	Model* modelBlock_ = nullptr;
 

@@ -75,8 +75,9 @@ private: // メンバ変数
 	Player* player_ = nullptr;
 	
 	//敵
-	Enemy* enemy_ = nullptr;
-	
+	//Enemy* enemy_ = nullptr;
+	std::list<Enemy*> enemies_;
+	static inline const uint32_t enemyMapCount = 2;
 
 	Model* modelBlock_ = nullptr;
 

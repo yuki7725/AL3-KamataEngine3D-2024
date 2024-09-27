@@ -16,6 +16,10 @@ void CameraController::Update()
 	const WorldTransform& targetWorldTransform = target_->GetWorldTransform();
 
 	Vector3 targetVelocity = target_->GetVelocity();
+	
+	if (target_->cameraStop == true) {
+		targetVelocity.y = 0;
+	}
 
 	//追従対象とオフセットからカメラの座標を計算
 	cameraMarkPos_ = Add(Add(targetWorldTransform.translation_ ,targetOffset_),Multiply(kVelocityBias,targetVelocity));

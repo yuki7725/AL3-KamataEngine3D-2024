@@ -81,6 +81,8 @@ public:
 
 	void OnCollision(const Enemy* enemy);
 
+	bool cameraStop = false;
+
 private:
 
 	//ワールド変換データ
@@ -141,4 +143,6 @@ private:
 
 	//壁にぶつかった時の速度減衰
 	static inline const float kAttenuationWall = 0.09f;
+
+	
 };

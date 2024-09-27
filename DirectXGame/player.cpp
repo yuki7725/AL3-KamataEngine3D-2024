@@ -572,3 +572,16 @@ void Player::isWallCollision(CollisionMapInfo& info)
 		velocity_.x *= (1.0f - kAttenuationWall);
 	}
 }
+
+Vector3 Player::GetWorldPosition() 
+{ 
+	//ワールド座標を取得
+	Vector3 worldPos;
+	
+	//ワールド座標の平行移動成分を取得(ワールド座標)
+	worldPos.x = worldTransform_.matWorld_.m[3][0];
+	worldPos.y = worldTransform_.matWorld_.m[3][1];
+	worldPos.z = worldTransform_.matWorld_.m[3][2];
+
+	return worldPos; 
+}

@@ -97,3 +97,8 @@ static Matrix4x4 MakeAffineMatrix(const Vector3& scale, const Vector3& rotate, c
 
 	return result;
 }
+
+struct AABB {
+	Vector3 min;
+	Vector3 max;
+};

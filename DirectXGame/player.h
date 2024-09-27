@@ -5,6 +5,8 @@
 #include "cassert"
 #include "Input.h"
 #include <algorithm>
+#include <numbers>
+
 
 //マップとの当たり判定
 struct CollisionMapInfo {
@@ -74,7 +76,7 @@ public:
 	//ワールド座標を取得
 	Vector3 GetWorldPosition();
 
-	
+	AABB GetAABB();
 
 private:
 

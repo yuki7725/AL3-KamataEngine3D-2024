@@ -8,6 +8,7 @@
 #include "Input.h"
 #include <algorithm>
 
+class Player;
 
 class Enemy {
 public:
@@ -20,6 +21,15 @@ public:
 	void Update();
 	
 	void Draw();
+
+	// ワールド座標を取得
+	Vector3 GetWorldPosition();
+
+	AABB GetAABB();
+
+	//衝突応答
+	void OnCollision(const Player* player);
+
 
 private:
 
@@ -52,4 +62,7 @@ private:
 	//経過時間
 	float walkTimer_ = 0.0f;
 
+	// キャラクターの当たり判定サイズ
+	static inline const float kWidth = 1.8f;
+	static inline const float kHeight = 1.8f;
 };

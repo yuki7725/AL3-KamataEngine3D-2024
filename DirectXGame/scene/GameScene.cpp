@@ -175,6 +175,9 @@ void GameScene::Update() {
 		viewProjection_.UpdateMatrix();
 	}
 
+	//当たり判定
+	CheckAllCollisions();
+
 	//skyDomeの処理
 	skyDome_->Update();
 
@@ -260,6 +263,29 @@ void GameScene::Draw() {
 	Sprite::PostDraw();
 	
 #pragma endregion
+}
+
+void GameScene::CheckAllCollisions() 
+{
+	#pragma region player and enemy
+	
+	//判定対象1と2の座標
+	AABB aabb1, aabb2;
+
+	//自キャラの座標
+	aabb1 = player_->GetAABB();
+
+	//自キャラと敵弾全ての当たり判定
+	for (Enemy* enemy : enemies_) {
+		//敵弾の座標
+		aabb2 = enemy->GetAABB();
+
+		//AABB同士の交差判定
+		if (IsCrossCollision(aabb1, aabb2)) {
+			player_->OnCollision(enemy);
+			enemy->OnCollision(player_);
+		}
+	}
 }
 
 void GameScene::GenerateBlocks() {

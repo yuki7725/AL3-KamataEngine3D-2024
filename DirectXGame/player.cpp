@@ -598,3 +598,10 @@ AABB Player::GetAABB()
 	
 	return aabb; 
 }
+
+void Player::OnCollision(const Enemy* enemy) 
+{
+	//
+	(void)enemy;
+	velocity_ = Add(velocity_, Vector3(0.0f, 2.0f, 0.0f));
+}

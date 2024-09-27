@@ -45,6 +45,9 @@ public: // メンバ関数
 	/// 描画
 	/// </summary>
 	void Draw();
+	
+	//すべての当たり判定を行う
+	void CheckAllCollisions();
 
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
@@ -96,6 +99,7 @@ private: // メンバ変数
 	CameraController* cameraController_=nullptr;
 	
 	
+
 
 	/// <summary>
 	/// ゲームシーン用

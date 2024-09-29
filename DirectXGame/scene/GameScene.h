@@ -57,6 +57,9 @@ public: // メンバ関数
 	void ChangePhase();
 
 
+	bool IsFinished() const { return finished_; }
+
+
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
@@ -119,6 +122,8 @@ private: // メンバ変数
 
 	//現在のフェーズ
 	Phase phase_;
+
+	bool finished_ = false;
 
 	/// <summary>
 	/// ゲームシーン用

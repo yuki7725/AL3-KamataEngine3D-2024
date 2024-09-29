@@ -22,6 +22,52 @@ enum class Scene {
 //現在シーン
 Scene scene = Scene::kUnkonwn;
 
+void ChangeScene() {
+	switch (scene) { case Scene::kTitle:
+
+		if (titleScene->IsFinished()) {
+			scene = Scene::kGame;
+			delete titleScene;
+			gameScene = new GameScene();
+			gameScene->Initialize();
+		}
+		break;
+
+		case Scene::kGame:
+		if (gameScene->IsFinished()) {
+			    scene = Scene::kTitle;
+			delete gameScene;
+			    gameScene = nullptr;
+			titleScene = new TitleScene();
+			    titleScene->Initialize();
+		}
+		break;
+	}
+}
+
+void UpdateScene() {
+	switch (scene) { case Scene::kTitle:
+		titleScene->Update();
+		break;
+		
+		case Scene::kGame:
+		gameScene->Update();
+
+		break;
+	}
+}
+
+void DrawScene() {
+	switch (scene) { case Scene::kTitle:
+		titleScene->Draw();
+		break;
+
+		case Scene::kGame:
+		gameScene->Draw();
+		    break;
+	}
+}
+
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	WinApp* win = nullptr;
@@ -31,8 +77,8 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	Audio* audio = nullptr;
 	AxisIndicator* axisIndicator = nullptr;
 	PrimitiveDrawer* primitiveDrawer = nullptr;
-	GameScene* gameScene = nullptr;
-	TitleScene* titleScene = nullptr;
+	//GameScene* gameScene = nullptr;
+	//TitleScene* titleScene = nullptr;
 
 	// ゲームウィンドウの作成
 	win = WinApp::GetInstance();
@@ -78,6 +124,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 	gameScene->Initialize();
 
 	//タイトルシーン
+	scene = Scene::kTitle;
 	titleScene = new TitleScene();
 	titleScene->Initialize();
 
@@ -93,9 +140,10 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		// 入力関連の毎フレーム処理
 		input->Update();
 		// ゲームシーンの毎フレーム処理
-		gameScene->Update();
+		//gameScene->Update();
 		//タイトルシーンの舞フレーム処理
-		titleScene->Update();
+		ChangeScene();
+		UpdateScene();
 		// 軸表示の更新
 		axisIndicator->Update();
 		// ImGui受付終了
@@ -104,9 +152,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
 		// 描画開始
 		dxCommon->PreDraw();
 		// ゲームシーンの描画
-		gameScene->Draw();
+		//gameScene->Draw();
 		//タイトルシーンの描画
-		titleScene->Draw();
+		DrawScene();
 		// 軸表示の描画
 		axisIndicator->Draw();
 		// プリミティブ描画のリセット

@@ -20,6 +20,8 @@ public:
 
 	void Draw();
 
+	bool IsFinished() { return isFinished_; }
+
 private:
 
 	WorldTransform worldTransform_;

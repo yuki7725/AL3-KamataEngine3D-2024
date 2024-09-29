@@ -357,10 +357,9 @@ void GameScene::ChangePhase()
 		//デスフェーズ
 		case Phase::kDeath:
 
-			/*if (deathParticles_ != nullptr) {
-			    deathParticles_->Update();
-			}*/
-		   // if (deathParticles_&&deathParticles_->)
+			if (deathParticles_ && deathParticles_->IsFinished()) {
+			    finished_ = true;
+			}
 		break;
 
 	}

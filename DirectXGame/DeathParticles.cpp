@@ -53,8 +53,10 @@ void DeathParticles::Update()
 
 void DeathParticles::Draw() 
 {
-	//
+	
 	if (isFinished_) {
 		return;
+
 	}
 }
+

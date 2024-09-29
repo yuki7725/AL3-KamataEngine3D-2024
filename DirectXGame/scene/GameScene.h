@@ -14,6 +14,7 @@
 #include "MapChipField.h"
 #include "CameraController.h"
 #include "Enemy.h"
+#include "DeathParticles.h"
 
 /// <summary>
 /// ゲームシーン
@@ -66,6 +67,8 @@ private: // メンバ変数
 	Model* modelPlayer_ = nullptr;
 	Model* modelEnemy_ = nullptr;
 
+	Model* modelParticle_ = nullptr;
+
 	// ワールドトランスフォーム
 	WorldTransform worldTransform_;
 
@@ -98,7 +101,8 @@ private: // メンバ変数
 	//カメラコントローラ
 	CameraController* cameraController_=nullptr;
 	
-	
+	//ですパーティクル
+	DeathParticles* deathParticles_ = nullptr;
 
 
 	/// <summary>

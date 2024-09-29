@@ -13,6 +13,7 @@ GameScene::~GameScene() {
 	delete mapChipField_;
 	delete cameraController_;
 	delete modelEnemy_;
+	delete deathParticles_;
 
 	for (Enemy* enemy : enemies_) {
 		delete enemy;
@@ -37,6 +38,7 @@ void GameScene::Initialize() {
 	modelSkyDome_ = Model::CreateFromOBJ("skydome", true);
 	modelPlayer_ = Model::CreateFromOBJ("player",true);
 	modelEnemy_ = Model::CreateFromOBJ("player",true);
+	modelParticle_ = Model::CreateFromOBJ("player" ,true);
 
 	// 3Dモデルの生成
 	model_ = Model::Create();
@@ -89,7 +91,13 @@ void GameScene::Initialize() {
 
 	//////////////////////////////////////////////////
 
-	
+	//	仮の生成処理
+	deathParticles_ = new DeathParticles;
+
+	deathParticles_->Initialize(modelParticle_, &viewProjection_, playerPosition);
+
+	//////////////////////////////////////////////////
+
 	modelBlock_ = new Model();
 
 	//////////////////////////////////////////////////
@@ -131,6 +139,10 @@ void GameScene::Initialize() {
 	cameraController_->SetTarget(player_);
 	//リセット
 	cameraController_->Reset();
+
+	////////////////////////////////////////////
+
+	
 }
 	
 
@@ -151,6 +163,10 @@ void GameScene::Update() {
 	//敵の更新
 	for (Enemy* enemy : enemies_) {
 		enemy->Update();
+	}
+
+	if (deathParticles_ != nullptr) {
+		deathParticles_->Update();
 	}
 	
 
@@ -226,6 +242,12 @@ void GameScene::Draw() {
 			enemy->Draw();
 		}
 	}
+
+	//デスパーティクル
+	if (deathParticles_ != nullptr) {
+		deathParticles_->Draw();
+	}
+
 	// モデルを連動
 	modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
 

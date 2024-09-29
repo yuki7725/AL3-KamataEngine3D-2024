@@ -1,6 +1,5 @@
 #pragma once
 
-#pragma once
 #include "Model.h"
 #include "WorldTransform.h"
 #include "ViewProjection.h"

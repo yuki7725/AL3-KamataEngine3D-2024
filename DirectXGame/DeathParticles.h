@@ -14,7 +14,7 @@ class DeathParticles
 {
 public:
 
-	void Initialize(Model* model, ViewProjection* viewProjection, Vector3& position);
+	void Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position);
 
 	void Update();
 

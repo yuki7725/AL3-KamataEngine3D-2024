@@ -83,6 +83,8 @@ public:
 
 	bool cameraStop = false;
 
+	//デスフラグ
+	bool isDead_ = false;
 	//デスフラグのgetter
 	bool IsDead() const { return isDead_; }
 
@@ -147,7 +149,6 @@ private:
 	//壁にぶつかった時の速度減衰
 	static inline const float kAttenuationWall = 0.09f;
 
-	//デスフラグ
-	bool isDead_ = false;
+	
 
 };

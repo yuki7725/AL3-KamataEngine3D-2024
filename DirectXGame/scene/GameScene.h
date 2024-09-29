@@ -50,14 +50,8 @@ public: // メンバ関数
 	//すべての当たり判定を行う
 	void CheckAllCollisions();
 
-	//ゲームのフェーズ
-	enum class Phase {
-		kPlay,//プレイ
-		kDeath,//デス演出
-	};
-
-	//現在のフェーズ
-	Phase phase_;
+	
+	
 
 	//フェーズ切り替え
 	void ChangePhase();
@@ -117,6 +111,14 @@ private: // メンバ変数
 	//ですパーティクル
 	DeathParticles* deathParticles_ = nullptr;
 
+	//ゲームのフェーズ
+	enum class Phase {
+		kPlay,//プレイ
+		kDeath,//デス演出
+	};
+
+	//現在のフェーズ
+	Phase phase_;
 
 	/// <summary>
 	/// ゲームシーン用

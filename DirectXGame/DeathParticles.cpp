@@ -1,7 +1,7 @@
 #include "DeathParticles.h"
 #include <algorithm>
 
-void DeathParticles::Initialize(Model* model, ViewProjection* viewProjection, Vector3& position) 
+void DeathParticles::Initialize(Model* model, ViewProjection* viewProjection, const Vector3& position) 
 {
 	assert(model);
 	model_ = model;

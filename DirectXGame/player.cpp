@@ -576,7 +576,7 @@ void Player::isWallCollision(CollisionMapInfo& info)
 Vector3 Player::GetWorldPosition() 
 { 
 	//ワールド座標を取得
-	Vector3 worldPos;
+	Vector3 worldPos = {};
 	
 	//ワールド座標の平行移動成分を取得(ワールド座標)
 	worldPos.x = worldTransform_.matWorld_.m[3][0];
@@ -603,5 +603,6 @@ void Player::OnCollision(const Enemy* enemy)
 {
 	//
 	(void)enemy;
-	velocity_ = Add(velocity_, Vector3(0.0f, 0.05f, 0.0f));
+	isDead_ = true;
+	//velocity_ = Add(velocity_, Vector3(0.0f, 0.05f, 0.0f));
 }

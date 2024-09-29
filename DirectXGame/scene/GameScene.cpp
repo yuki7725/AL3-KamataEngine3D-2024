@@ -29,6 +29,9 @@ GameScene::~GameScene() {
 
 void GameScene::Initialize() {
 
+	//ゲームプレイフェーズから開始
+	phase_ = Phase::kPlay;
+
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	audio_ = Audio::GetInstance();
@@ -40,8 +43,7 @@ void GameScene::Initialize() {
 	modelEnemy_ = Model::CreateFromOBJ("player",true);
 	modelParticle_ = Model::CreateFromOBJ("player" ,true);
 
-	//ゲームプレイフェーズから開始
-	phase_ = Phase::kPlay;
+	
 
 	//////////////////////////////////////////////////
 
@@ -97,9 +99,9 @@ void GameScene::Initialize() {
 	//////////////////////////////////////////////////
 
 	//	仮の生成処理
-	deathParticles_ = new DeathParticles;
+	//deathParticles_ = new DeathParticles;
 
-	deathParticles_->Initialize(modelParticle_, &viewProjection_, playerPosition);
+	//deathParticles_->Initialize(modelParticle_, &viewProjection_, playerPosition);
 
 	//////////////////////////////////////////////////
 	GenerateBlocks();
@@ -163,6 +165,8 @@ void GameScene::Update() {
 //カメラコントローラの更新
 	cameraController_->Update();
 
+	
+
 	//自キャラの更新
 	player_->Update();
 
@@ -203,13 +207,15 @@ void GameScene::Update() {
 	//skyDomeの処理
 	skyDome_->Update();
 
+	ChangePhase();
+
 	
 }
 
 void GameScene::Draw() {
 
 	
-
+	ChangePhase();
 
 	// コマンドリストの取得
 	ID3D12GraphicsCommandList* commandList = dxCommon_->GetCommandList();
@@ -240,7 +246,12 @@ void GameScene::Draw() {
 	
 	
 	//自キャラの描画
-	player_->Draw();
+	
+	if (!player_->isDead_) {
+		player_->Draw();
+		//deathParticles_->Draw();
+	}
+	
 	
 	//敵の描画
 	for (Enemy* enemy : enemies_) {
@@ -249,10 +260,10 @@ void GameScene::Draw() {
 		}
 	}
 
-	//デスパーティクル
-	if (deathParticles_ != nullptr) {
-		deathParticles_->Draw();
-	}
+	////デスパーティクル
+	//if (deathParticles_ != nullptr) {
+	//	
+	//}
 
 	// モデルを連動
 	modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
@@ -314,7 +325,50 @@ void GameScene::CheckAllCollisions()
 			enemy->OnCollision(player_);
 		}
 	}
+
+
 }
+
+////////////////////////////////////////////////////////
+
+void GameScene::ChangePhase() 
+{
+	//
+	switch (phase_) {
+
+		//ゲームプレイフェーズ
+		case Phase::kPlay:
+
+			player_->Update();
+		    CheckAllCollisions();
+
+			if (player_->isDead_) {
+
+				//デス演出に切り替え
+			    phase_ = Phase::kDeath;
+				//自キャラの座標を取得
+			    const Vector3& deathParticlesPosition = player_->GetWorldPosition();
+			    deathParticles_ = new DeathParticles;
+			    deathParticles_->Initialize(modelParticle_, &viewProjection_,deathParticlesPosition);
+			}
+
+		break;
+
+		//デスフェーズ
+		case Phase::kDeath:
+
+			/*if (deathParticles_ != nullptr) {
+			    deathParticles_->Update();
+			}*/
+		   // if (deathParticles_&&deathParticles_->)
+		break;
+
+	}
+}
+
+
+////////////////////////////////////////////////////////
+
 
 void GameScene::GenerateBlocks() {
 	

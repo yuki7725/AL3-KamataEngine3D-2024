@@ -249,7 +249,7 @@ void GameScene::Draw() {
 	
 	if (!player_->isDead_) {
 		player_->Draw();
-		//deathParticles_->Draw();
+		
 	}
 	
 	
@@ -261,9 +261,9 @@ void GameScene::Draw() {
 	}
 
 	////デスパーティクル
-	//if (deathParticles_ != nullptr) {
-	//	
-	//}
+	if (deathParticles_ != nullptr) {
+		deathParticles_->Draw();
+	}
 
 	// モデルを連動
 	modelBlock_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);

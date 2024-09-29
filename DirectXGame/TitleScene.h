@@ -6,6 +6,7 @@
 #include "Input.h"
 #include <algorithm>
 #include <numbers>
+#include <TitleText.h>
 
 class TitleScene 
 {
@@ -24,5 +25,20 @@ public:
 
 private:
 
+	Model* model_ = nullptr;
+
 	bool finished_ = false;
+
+	
+
+	// ワールドトランスフォーム
+	WorldTransform worldTransform_;
+
+	// ビュープロジェクション
+	ViewProjection viewProjection_;
+
+	TitleText* titleText_ = nullptr;
+
+	Model* modelTitle_ = nullptr;
 };
+

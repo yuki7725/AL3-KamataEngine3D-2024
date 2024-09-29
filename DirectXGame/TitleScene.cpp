@@ -24,19 +24,20 @@ void TitleScene::Initialize() {
 
 	titleText_ = new TitleText();
 
-	Vector3 titlePos = {40, 40, 0};
+	Vector3 titlePos = {40.0f, 40.0f, 10.0f};
 
 	titleText_->Initialize(modelTitle_, &viewProjection_, titlePos);
 }
 
 void TitleScene::Update() 
-{
+
+{	titleText_->Update();
 	//
 	if (Input::GetInstance()->PushKey(DIK_SPACE)) {
 		finished_ = true;
 	}
 
-	titleText_->Update();
+	
 
 	// 行列を更新して定数バッファに転送
 	//worldTransform_.UpdateMatrix();

@@ -25,7 +25,7 @@ public:
 
 private:
 
-	Model* model_ = nullptr;
+	//Model* model_ = nullptr;
 
 	bool finished_ = false;
 

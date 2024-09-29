@@ -1,9 +1,9 @@
 #define NOMINMAX
 #include "CameraController.h"
 #include "player.h"
-#include "iostream"
-#include "algorithm"
-#include "cmath"
+#include <iostream>
+#include <algorithm>
+#include <cmath>
 
 void CameraController::Initialize(ViewProjection* viewProjection) 
 { 

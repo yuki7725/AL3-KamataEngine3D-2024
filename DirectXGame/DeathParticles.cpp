@@ -1,4 +1,5 @@
 #include "DeathParticles.h"
+#include <algorithm>
 
 void DeathParticles::Initialize(Model* model, ViewProjection* viewProjection, Vector3& position) 
 {
@@ -11,6 +12,9 @@ void DeathParticles::Initialize(Model* model, ViewProjection* viewProjection, Ve
 		worldTransform.Initialize();
 		worldTransform.translation_ = position;
 	}
+
+	objectColor_.Initialize();
+	color_ = {1.0f, 1.0f, 1.0f, 1.0f};
 
 }
 
@@ -49,14 +53,20 @@ void DeathParticles::Update()
 	for (auto& worldTransform : worldTransforms_) {
 		worldTransform.UpdateMatrix();
 	}
+
+	color_.w = std::clamp(1.0f - counter_ / kDuration, 0.0f, 1.0f);
+	objectColor_.SetColor(color_);
+	objectColor_.TransferMatrix();
 }
 
-void DeathParticles::Draw() 
-{
-	
+void DeathParticles::Draw() {
+
 	if (isFinished_) {
 		return;
+	}
 
+	for (auto& worldTransform : worldTransforms_) {
+		// 3Dモデルを描画
+		model_->Draw(worldTransform,*viewProjection_,&objectColor_);
 	}
 }
-

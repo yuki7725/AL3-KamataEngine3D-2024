@@ -1,14 +1,14 @@
 #pragma once
 
-#include "Input.h"
+//#include "Input.h"
 #include "Model.h"
-#include "ViewProjection.h"
+//#include "ViewProjection.h"
 #include "WorldTransform.h"
 #include "cassert"
 
 #include <array>
 #include <numbers>
-#include <algorithm>
+//#include <algorithm>
 
 class DeathParticles 
 {
@@ -29,12 +29,12 @@ private:
 	Model* model_ = nullptr;
 
 	//パーティクルの個数
-	static inline const uint32_t kNumParticles = 0;
+	static inline const uint32_t kNumParticles = 8;
 
 	std::array<WorldTransform, kNumParticles> worldTransforms_;
 
 	//存続時間
-	static inline const float kDuration = 1.0f;
+	static inline const float kDuration = 1.0;
 	//速さ
 	static inline const float kSpeed = 0.1f;
 	//分割した1コ分の角度
@@ -45,4 +45,10 @@ private:
 
 	//経過時間カウント
 	float counter_ = 0.0f;
+
+	//色変更オブジェクト
+	ObjectColor objectColor_;
+	
+	//色の変更
+	Vector4 color_;
 };

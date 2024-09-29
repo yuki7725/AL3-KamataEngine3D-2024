@@ -69,7 +69,7 @@ void GameScene::Initialize() {
 	player_->Initialize(modelPlayer_, &viewProjection_,playerPosition);
 
 	player_->SetMapChipField(mapChipField_);
-	GenerateBlocks();
+	
 	//////////////////////////////////////////////////
 
 	//敵の生成
@@ -97,6 +97,7 @@ void GameScene::Initialize() {
 	deathParticles_->Initialize(modelParticle_, &viewProjection_, playerPosition);
 
 	//////////////////////////////////////////////////
+	GenerateBlocks();
 
 	modelBlock_ = new Model();
 

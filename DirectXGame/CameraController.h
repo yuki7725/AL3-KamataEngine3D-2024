@@ -1,11 +1,13 @@
 #pragma once
+
+#define NOMINMAX
 #include "ViewProjection.h"
-#include "player.h"
+#//include "player.h"
 #include "WorldTransform.h"
-#include "Input.h"
+//#include "Input.h"
 #include <algorithm>
-#include "string.h"
-#include "clac.h"
+//#include "string.h"
+//#include "clac.h"
 
 //前方宣言
 class Player;

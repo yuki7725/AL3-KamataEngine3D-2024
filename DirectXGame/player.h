@@ -83,6 +83,9 @@ public:
 
 	bool cameraStop = false;
 
+	//デスフラグのgetter
+	bool IsDead() const { return isDead_; }
+
 private:
 
 	//ワールド変換データ
@@ -144,5 +147,7 @@ private:
 	//壁にぶつかった時の速度減衰
 	static inline const float kAttenuationWall = 0.09f;
 
-	
+	//デスフラグ
+	bool isDead_ = false;
+
 };

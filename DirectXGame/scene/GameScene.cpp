@@ -40,6 +40,11 @@ void GameScene::Initialize() {
 	modelEnemy_ = Model::CreateFromOBJ("player",true);
 	modelParticle_ = Model::CreateFromOBJ("player" ,true);
 
+	//ゲームプレイフェーズから開始
+	phase_ = Phase::kPlay;
+
+	//////////////////////////////////////////////////
+
 	// 3Dモデルの生成
 	model_ = Model::Create();
 

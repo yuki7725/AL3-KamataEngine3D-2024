@@ -40,5 +40,9 @@ private:
 	//分割した1コ分の角度
 	static inline const float kAngleUint = std::numbers::pi_v<float> * 2 / kNumParticles;
 
-	
+	//終了フラグ
+	bool isFinished_ = false;
+
+	//経過時間カウント
+	float counter_ = 0.0f;
 };

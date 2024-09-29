@@ -16,6 +16,21 @@ void DeathParticles::Initialize(Model* model, ViewProjection* viewProjection, Ve
 
 void DeathParticles::Update() 
 {
+	//カウンターを1フレーム分の秒数進める
+	counter_ += 1.0f / 60.0f;
+	
+	//存続時間の上限に達したら
+	if (counter_ > kDuration) {
+		counter_ = kDuration;
+		//終了
+		isFinished_ = true;
+	}
+	
+
+	if (isFinished_) {
+		return;
+	}
+
 	//
 	for (uint32_t i = 0; i < kNumParticles; ++i) {
 		
@@ -36,4 +51,10 @@ void DeathParticles::Update()
 	}
 }
 
-void DeathParticles::Draw() {}
+void DeathParticles::Draw() 
+{
+	//
+	if (isFinished_) {
+		return;
+	}
+}
